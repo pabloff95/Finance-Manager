@@ -70,6 +70,22 @@
             </form><br>
         </details>
 
+        <form action="overview.php" method="post">
+                <label for="financeTypeSelector">Finance type</label>
+                <select name="financeType" id="financeTypeSelector">
+                    <option selected disabled></option>
+                    <option value="1">Expenses</option>
+                    <option value="2">Investments</option>
+                    <option value="3">Income</option>
+                </select><br>
+                <label for="financeCategorySelector">Category</label>
+                <select name="financeCategory" id="financeCategorySelector">
+                    <option>a</option>
+                    <option>b</option>
+                    <option>c</option>
+                </select>
+        </form>
+
         <details>
             <summary>Filter data by category</summary>
             <form action="overview.php?category=expenses" method="post">

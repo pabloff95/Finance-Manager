@@ -18,6 +18,8 @@ window.addEventListener("DOMContentLoaded", function(event){
             // Create chart
             createPieChart("Finance records overview", "General overview", dataTotalDB, "chartTotalData");        
         }
+    } else {
+        createHTMLP("chartTotalData", "No data registered during this period");        
     }
 
     // -------------- EXPENSES CHART -------------
@@ -26,6 +28,8 @@ window.addEventListener("DOMContentLoaded", function(event){
         var dataCategoryExpenses = JSON.parse(document.getElementById("jsonCategoryExpensesValues").value);
         // Create chart
         createPieChart("EXPENSES", "Total: " + totalExpenses + "€", dataCategoryExpenses, "chartCategoryExpenses");        
+    } else {
+        createHTMLP("chartCategoryExpenses", "No expenses registered during this period");        
     }
 
     // -------------- INCOME CHART -------------
@@ -34,6 +38,8 @@ window.addEventListener("DOMContentLoaded", function(event){
         var dataCategoryIncome = JSON.parse(document.getElementById("jsonCategoryIncomeValues").value);    
         // Create chart
         createPieChart("INCOME", "Total: " + totalIncome + "€", dataCategoryIncome, "chartCategoryIncome");        
+    } else {
+        createHTMLP("chartCategoryIncome", "No income registered during this period");        
     }
 
     // -------------- INVESTMENT CHART -------------
@@ -42,6 +48,8 @@ window.addEventListener("DOMContentLoaded", function(event){
         var dataCategoryInvestment = JSON.parse(document.getElementById("jsonCategoryInvestmentValues").value);   
         // Create chart
         createPieChart("INVESTMENTS", "Total: " + totalInvestments + "€", dataCategoryInvestment, "chartInvestments");        
+    } else {
+        createHTMLP("chartInvestments", "No investments registered during this period");        
     }
 
 });
@@ -91,3 +99,10 @@ function detailDebt(totalIncome, totalInvestments, totalExpenses){
     container.appendChild(list);
 }
 
+// Function to create a <p> element
+function createHTMLP(id, text){
+    let element = document.createElement("p");
+    element.innerText = text;
+    let parent = document.getElementById(id);
+    parent.appendChild(element);
+}
