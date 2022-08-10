@@ -22,11 +22,12 @@
         }
         // Get unique months per year
         $uniqueCombinations = array_unique($datePeriod);
+        $uniqueCombinations = array_values($uniqueCombinations);
         //  Obtain the total amount (€) of the unique months per year (yyyy-mm) or year (yyyy)
         for ($i = 0 ; $i < count($uniqueCombinations); $i++) {
             $totalAmount = 0;
-            for ($j = 0 ; $j < count($dates); $j++) {
-                if ($uniqueCombinations[$i] == substr($dates[$j], 0, $limit)){
+            for ($j = 0 ; $j < count($datePeriod); $j++) {
+                if ($uniqueCombinations[$i] == $datePeriod[$j]){
                     $totalAmount += $amounts[$j];
                 }
             }
@@ -47,16 +48,6 @@
             array_push($jsCanvasData, $record);
         }
         return $jsCanvasData;
-    }
-
-
-
-    function test(){
-        $values = categoryHistoryData("Salario", "income", "months");
-        ksort($values); // Orders array by key from lower to higher
-        foreach($values as $key => $value) {
-            echo "Date $key : $value € <br>";
-        }
     }
 
 ?>

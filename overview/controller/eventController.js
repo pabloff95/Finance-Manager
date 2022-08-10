@@ -7,7 +7,6 @@ window.addEventListener("DOMContentLoaded", function(event){
     document.getElementById('selectedMonth').value = currentMonth();
     document.getElementById('selectedYear').value = new Date().getFullYear();
     document.getElementById('displayYear').value = new Date().getFullYear();    
-
 });
 
 // Function to fill <select> tag with a month list

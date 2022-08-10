@@ -21,7 +21,7 @@
 <body>
     <header>
         <h1>FINANCE HISTORY</h1>
-        <?php if(!isset($_GET['category'])) { ?>
+        <?php if (!isset($_GET['category'])) { ?>
             <input type="hidden" id="totalIncome" value="<?php echo getTotalAmount("income"); ?>">
             <input type="hidden" id="totalExpenses" value="<?php echo getTotalAmount("expenses"); ?>">
             <input type="hidden" id="totalInvestments" value="<?php echo getTotalAmount("investment"); ?>">
@@ -32,12 +32,14 @@
             <input type="hidden" id="jsonCategoryInvestmentValues" value='<?php echo json_encode(arrayInvestment(), JSON_NUMERIC_CHECK); ?>'>
         <?php } ?>
 
-        <?php if(isset($_GET['category'])) { ?>
-            <input type="hidden" id="jsonCategoryData" value='<?php echo json_encode(categoryDataArray($_POST['selectedCategory'], $_GET['category'], $_POST['period']), JSON_NUMERIC_CHECK); ?>'>
-            <input type="hidden" id="hiddenCategory" value='<?php echo $_POST['selectedCategory'];?>' >
-            <input type="hidden" id="hiddenPeriod" value='<?php echo $_POST['period'];?>' >
+        <?php if (isset($_GET['category'])) { ?>
+            <input type="hidden" id="jsonCategoryDataMonths" value='<?php echo json_encode(categoryDataArray($_POST['selectedCategory'], $_GET['category'], "months"), JSON_NUMERIC_CHECK); ?>'>
+            <input type="hidden" id="jsonCategoryDataYears" value='<?php echo json_encode(categoryDataArray($_POST['selectedCategory'], $_GET['category'], "years"), JSON_NUMERIC_CHECK); ?>'>
+            
+            <input type="hidden" id="hiddenCategory" value='<?php echo $_POST['selectedCategory']; ?>'>
+            <input type="hidden" id="hiddenPeriod" value='<?php echo $_POST['period']; ?>'>
         <?php } ?>
-        
+
     </header>
 
     <aside>
@@ -75,7 +77,7 @@
                 <select name="selectedCategory" required>
                     <?php fillCategoryOptions("expenses"); ?>
                 </select><br>
-                <input type="radio" name="period" value="months" id="radioMonths" required ><label for="radioMonths">Months</label></br>
+                <input type="radio" name="period" value="months" id="radioMonths" required><label for="radioMonths">Months</label></br>
                 <input type="radio" name="period" value="years" id="radioYears" required><label for="radioYears">Years</label></br>
                 <input type="submit" value="SHOW">
             </form><br>
@@ -85,7 +87,7 @@
                 <select name="selectedCategory" required>
                     <?php fillCategoryOptions("income"); ?>
                 </select><br>
-                <input type="radio" name="period" value="months" id="radioMonths" required ><label for="radioMonths">Months</label></br>
+                <input type="radio" name="period" value="months" id="radioMonths" required><label for="radioMonths">Months</label></br>
                 <input type="radio" name="period" value="years" id="radioYears" required><label for="radioYears">Years</label></br>
                 <input type="submit" value="SHOW">
             </form><br>
@@ -95,7 +97,7 @@
                 <select name="selectedCategory" required>
                     <?php fillCategoryOptions("investment"); ?>
                 </select><br>
-                <input type="radio" name="period" value="months" id="radioMonths" required ><label for="radioMonths">Months</label></br>
+                <input type="radio" name="period" value="months" id="radioMonths" required><label for="radioMonths">Months</label></br>
                 <input type="radio" name="period" value="years" id="radioYears" required><label for="radioYears">Years</label></br>
                 <input type="submit" value="SHOW">
             </form>
@@ -122,9 +124,12 @@
                 <div id="chartCategoryExpenses"></div>
                 <div id="chartCategoryIncome"></div>
             </div>
-        <?php } else if(isset($_GET['category'])){ ?>
-            <div id="categoryChart">
-                <?php test(); ?>
+        <?php } else if (isset($_GET['category'])) { ?>
+            <div class="mainSection" id="left">
+                <div id="categoryChartMonths"></div>
+            </div>
+            <div class="mainSection">
+                <div id="categoryChartYears"></div>
             </div>
         <?php } ?>
 
