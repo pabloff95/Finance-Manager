@@ -77,8 +77,6 @@
                 <select name="selectedCategory" required>
                     <?php fillCategoryOptions("expenses"); ?>
                 </select><br>
-                <input type="radio" name="period" value="months" id="radioMonths" required><label for="radioMonths">Months</label></br>
-                <input type="radio" name="period" value="years" id="radioYears" required><label for="radioYears">Years</label></br>
                 <input type="submit" value="SHOW">
             </form><br>
 
@@ -87,8 +85,6 @@
                 <select name="selectedCategory" required>
                     <?php fillCategoryOptions("income"); ?>
                 </select><br>
-                <input type="radio" name="period" value="months" id="radioMonths" required><label for="radioMonths">Months</label></br>
-                <input type="radio" name="period" value="years" id="radioYears" required><label for="radioYears">Years</label></br>
                 <input type="submit" value="SHOW">
             </form><br>
 
@@ -97,8 +93,6 @@
                 <select name="selectedCategory" required>
                     <?php fillCategoryOptions("investment"); ?>
                 </select><br>
-                <input type="radio" name="period" value="months" id="radioMonths" required><label for="radioMonths">Months</label></br>
-                <input type="radio" name="period" value="years" id="radioYears" required><label for="radioYears">Years</label></br>
                 <input type="submit" value="SHOW">
             </form>
         </details></br>
