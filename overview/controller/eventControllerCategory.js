@@ -9,8 +9,7 @@ window.addEventListener("DOMContentLoaded", function() {
     removePlotElements();
     window.addEventListener("resize", function(){ // some elements reappear on resizing the window
         removePlotElements();
-    });
-    
+    }); 
 });
 
 // Create bar / line plots for year / monhtly data
