@@ -1,6 +1,6 @@
 <?php
     // Define global variables
-    $records_per_page = 5;    // Number of records displayed per page
+    $records_per_page = 10;    // Number of records displayed per page
     // Function(s) to define the URL of the nav buttons: +1 or -1
     function getURLForward(){
         $data = getAllData($_GET['data']); 

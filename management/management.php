@@ -46,29 +46,32 @@
     -->
 
     <?php if (!isset($_GET['data'])) { ?>     
-        <form action="management.php?data=expenses&page=1" method="POST" class="menuForm">
-            <input type="submit" value="EXPENSES" class="menuButton">
-        </form>
-        <form action="management.php?data=income&page=1" method="POST" class="menuForm">
-            <input type="submit" value="INCOME" class="menuButton">
-        </form>
-        <form action="management.php?data=investment&page=1" method="POST" class="menuForm">
-            <input type="submit" value="INVESTMENTS" class="menuButton">
-        </form>
-        <form action="management.php?data=categories_expenses&page=1" method="POST" class="menuForm">
-            <input type="submit" value="CATEGORIES EXPENSES" class="menuButton">
-        </form>
-        <form action="management.php?data=categories_income&page=1" method="POST" class="menuForm">
-            <input type="submit" value="CATEGORIES INCOME" class="menuButton">
-        </form>
-        <form action="/finances/index.php" method="POST" class="menuForm">
-            <input type="submit" value="MENU" class="menuButton">
-        </form>
+        <div id="managementMenu">
+            <form action="management.php?data=expenses&page=1" method="POST" class="menuForm">
+                <input type="submit" value="EXPENSES" class="menuButton">
+            </form>
+            <form action="management.php?data=income&page=1" method="POST" class="menuForm">
+                <input type="submit" value="INCOME" class="menuButton">
+            </form>
+            <form action="management.php?data=investment&page=1" method="POST" class="menuForm">
+                <input type="submit" value="INVESTMENTS" class="menuButton">
+            </form>
+            <form action="management.php?data=categories_expenses&page=1" method="POST" class="menuForm">
+                <input type="submit" value="CATEGORIES EXPENSES" class="menuButton">
+            </form>
+            <form action="management.php?data=categories_income&page=1" method="POST" class="menuForm">
+                <input type="submit" value="CATEGORIES INCOME" class="menuButton">
+            </form>
+            <form action="/finances/index.php" method="POST" class="menuForm">
+                <input type="submit" value="MENU" class="menuButton">
+            </form>
+        </div>
         
 
     <!-- MANAGE EXPENSES --> 
     <?php } else if ($_GET['data'] == "expenses"){ ?>
         <div class="table">
+            <h1 class="title">Manage expenses</h1>
         <table>
             <tr>
                 <th class="header">
@@ -117,6 +120,7 @@
     <!-- MANAGE INCOME --> 
     <?php } else if ($_GET['data'] == "income") {?>
         <div class="table">
+            <h1 class="title">Manage income</h1>
         <table>
             <tr class="header-row">
                 <th class="header">
@@ -128,7 +132,7 @@
                 <th class="header">
                     <form action='management.php?data=income&page=1' method='POST' id='changeExpenseForm'> 
                         <input type="submit" value="Income" class="headerButton">
-                        <input type="hidden" name="order" value="category">
+                        <input type="hidden" name="order" value="concept">
                     </form>   
                 </th>
                 <th class="header">
@@ -165,6 +169,7 @@
     <!-- MANAGE CATEGORIES  EXPENSES --> 
     <?php } else if ($_GET['data'] == "categories_expenses") {?>
         <div class="table">
+            <h1 class="title">Manage categories expenses</h1>
         <table>
             <tr>
                 <th>Category</th>
@@ -190,6 +195,7 @@
     <!-- MANAGE CATEGORIES  INCOME --> 
     <?php } else if ($_GET['data'] == "categories_income") {?>
         <div class="table">
+            <h1 class="title">Manage categories income</h1>
         <table>
             <tr>
                 <th>Category</th>
@@ -215,6 +221,7 @@
     <!-- MANAGE INVESTMENT --> 
     <?php } else if ($_GET['data'] == "investment") {?>
         <div class="table">
+            <h1 class="title">Manage investment</h1>
         <table>
             <tr>
                 <th class="header">

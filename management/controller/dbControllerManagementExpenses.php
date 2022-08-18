@@ -31,7 +31,7 @@
             $x++;
         }
         // Fill with empty cells if there are not enough records
-        for ($printed; $printed < 5; $printed++){
+        for ($printed; $printed < $GLOBALS['records_per_page']; $printed++){
             echo "<tr><td colspan='100%' class='empty-row'>&nbsp;</td></tr>";
         }
         echo "</table>"; // Close table html tag
