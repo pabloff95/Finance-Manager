@@ -21,6 +21,7 @@
 <body>
     <header>
         <h1>FINANCE HISTORY</h1>
+        <?php hiddenCategories(); ?>
         <?php if (!isset($_GET['category'])) { ?>
             <input type="hidden" id="totalIncome" value="<?php echo getTotalAmount("income"); ?>">
             <input type="hidden" id="totalExpenses" value="<?php echo getTotalAmount("expenses"); ?>">
@@ -35,7 +36,7 @@
         <?php if (isset($_GET['category'])) { ?>
             <input type="hidden" id="jsonCategoryDataMonths" value='<?php echo json_encode(categoryDataArray($_POST['selectedCategory'], $_GET['category'], "months"), JSON_NUMERIC_CHECK); ?>'>
             <input type="hidden" id="jsonCategoryDataYears" value='<?php echo json_encode(categoryDataArray($_POST['selectedCategory'], $_GET['category'], "years"), JSON_NUMERIC_CHECK); ?>'>
-            
+
             <input type="hidden" id="hiddenCategory" value='<?php echo $_POST['selectedCategory']; ?>'>
             <input type="hidden" id="hiddenPeriod" value='<?php echo $_POST['period']; ?>'>
         <?php } ?>
@@ -43,75 +44,47 @@
     </header>
 
     <aside>
-        <details>
-            <summary>Filter data by period of time</summary>
-            <form action="overview.php?time=period" method="POST">
-                <h3>Specific period</h3>
-                <label>From</label>
-                <input type="date" name="fromDate" required><br>
+        <h1>Display data</h1>
+        <form action="overview.php?time=period" method="POST">
+            <h3>Specific period</h3>
+            <label>From</label>
+            <input type="date" name="fromDate" required><br>
 
-                <label>To</label>
-                <input type="date" name="toDate" id="toDate" required><br>
+            <label>To</label>
+            <input type="date" name="toDate" id="toDate" required><br>
 
-                <input type="submit" value="SHOW">
-            </form><br>
+            <input type="submit" value="SHOW">
+        </form><br>
 
-            <form action="overview.php?time=month" method="post">
-                <h3>Month & Year</h3>
-                <select class="monthSelector" id="selectedMonth" name="selectedMonth" required></select><br>
-                <select class="yearSelector" id="selectedYear" name="selectedYear" required></select><br>
-                <input type="submit" value="SHOW">
-            </form><br>
+        <form action="overview.php?time=month" method="post">
+            <h3>Month & Year</h3>
+            <select class="monthSelector" id="selectedMonth" name="selectedMonth" required></select><br>
+            <select class="yearSelector" id="selectedYear" name="selectedYear" required></select><br>
+            <input type="submit" value="SHOW">
+        </form><br>
 
-            <form action="overview.php?time=year" method="post">
-                <h3>Year</h3>
-                <select class="yearSelector" id="displayYear" name="displayYear" required></select><br>
-                <input type="submit" value="SHOW">
-            </form><br>
-        </details>
+        <form action="overview.php?time=year" method="post">
+            <h3>Year</h3>
+            <select class="yearSelector" id="displayYear" name="displayYear" required></select><br>
+            <input type="submit" value="SHOW">
+        </form><br>
 
-        <form action="overview.php" method="post">
-                <label for="financeTypeSelector">Finance type</label>
-                <select name="financeType" id="financeTypeSelector">
-                    <option selected disabled></option>
-                    <option value="1">Expenses</option>
-                    <option value="2">Investments</option>
-                    <option value="3">Income</option>
-                </select><br>
+        <form action="" method="post" id="categoryForm">
+            <h3>Category search</h3>
+            <label for="financeTypeSelector">Finance type</label>
+            <select name="financeType" id="financeTypeSelector" required>
+                <option selected disabled></option>
+                <option value="1">Expenses</option>
+                <option value="2">Investments</option>
+                <option value="3">Income</option>
+            </select><br>
+            <div id="selectCategoryDiv">
                 <label for="financeCategorySelector">Category</label>
-                <select name="financeCategory" id="financeCategorySelector">
-                    <option>a</option>
-                    <option>b</option>
-                    <option>c</option>
-                </select>
+                <select name="selectedCategory" id="financeCategorySelector" required></select><br>
+            </div>
+            <input type="submit" value="SHOW">
         </form>
-
-        <details>
-            <summary>Filter data by category</summary>
-            <form action="overview.php?category=expenses" method="post">
-                <h3>Expenses category</h3>
-                <select name="selectedCategory" required>
-                    <?php fillCategoryOptions("expenses"); ?>
-                </select><br>
-                <input type="submit" value="SHOW">
-            </form><br>
-
-            <form action="overview.php?category=income" method="post">
-                <h3>Income category</h3>
-                <select name="selectedCategory" required>
-                    <?php fillCategoryOptions("income"); ?>
-                </select><br>
-                <input type="submit" value="SHOW">
-            </form><br>
-
-            <form action="overview.php?category=investment" method="post">
-                <h3>Investment category</h3>
-                <select name="selectedCategory" required>
-                    <?php fillCategoryOptions("investment"); ?>
-                </select><br>
-                <input type="submit" value="SHOW">
-            </form>
-        </details></br>
+        </br>
 
         <?php if (isset($_GET['time']) || isset($_GET['category'])) { ?>
             <form action="overview.php" method="POST">

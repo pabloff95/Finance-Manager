@@ -25,11 +25,5 @@
         }
     }
 
-    // Print confirmation message when data is inserted into DB
-    function printExpensesConfirmationMessage(){
-        if (isset($_POST['expensesForm'])) {
-            echo "<h2>Data inserted into the database!</h2>";
-        }
-    }
 
 ?>

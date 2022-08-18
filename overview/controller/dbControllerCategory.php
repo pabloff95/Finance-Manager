@@ -50,4 +50,32 @@
         return $jsCanvasData;
     }
 
+
+    // Create hidden inputs with the categories from all finance elements 
+    function hiddenCategories(){
+        // Retrieve data
+        $expenses = getAllCategories("expenses");
+        $income = getAllCategories("income");
+        $investment = getAllCategories("investment");
+        // Prepare arrays
+        $expensesCategories = "";
+        $incomeCategories = "";
+        $investmentCategories = "";
+        // Fill arrays
+        while($row = mysqli_fetch_assoc($expenses)){
+            $expensesCategories .= $row['category'] . "/";
+        }
+        while($row = mysqli_fetch_assoc($income)){
+            $incomeCategories .= $row['category'] . "/";
+        }
+        while($row = mysqli_fetch_assoc($investment)){
+            $investmentCategories .= $row['category'] . "/";
+        }
+        // Create HTML elements
+        echo "<input type='hidden' id='expensesCategories' value='" . $expensesCategories . "' />";
+        echo "<input type='hidden' id='incomeCategories' value='" . $incomeCategories . "' />";
+        echo "<input type='hidden' id='investmentCategories' value='" . $investmentCategories . "' />";
+    }
+
+
 ?>

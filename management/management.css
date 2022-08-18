@@ -1,0 +1,130 @@
+
+/*Content positioning*/
+html, body{
+    height: 100%;
+    overflow-y: hidden;
+}
+main{
+    height: 100%;
+    width: 100%;
+    /*Center flexbox*/
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.menuForm{
+    padding-top: 1vh;    
+    padding-bottom: 1vh;
+}
+
+/*Tables style*/
+.table{
+    /*Dimensions*/
+    width: auto;
+    /*Position*/
+    margin: 0 auto;   
+}
+
+table{
+    white-space: nowrap;
+    border-collapse:collapse;
+    font-size: 1rem;
+}
+
+td, th{
+    padding: 1%;
+    min-width: 100px;
+}
+tr:nth-child(even){
+    background-color: var(--inputBG);
+}
+tr{
+    height: 7.5vh;
+}
+/*input fields (on editing record)*/
+.inputField{
+    padding: 1%;
+    width: 90% !important;
+    height: 100% !important;
+    font-size: 1rem !important;
+    background-color: transparent !important;
+}
+input[type="text"]{
+    min-width: 100px;
+    max-width: min-content;
+}
+.inputField:focus{
+    background-color: var(--inputFocus) !important;
+}
+
+
+
+/*--------BUTTONS ---------*/
+/*Header buttons*/
+.header{
+    /*Border*/
+    border: 3px black solid;
+    /*Colours*/
+    background-color: var(--main);
+    color: black;
+    border-color: black;   
+    /*Other*/
+    cursor: pointer;    
+    padding: 0;
+}
+.header:hover{
+    /*Colours*/
+    background-color: var(--contrast);
+    color: black;
+    border-color: black;
+}
+.header:active{
+    transform: scale(0.9);
+}
+.headerButton{
+    padding: calc(0.5vh + 0.5vw);
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-color: transparent;
+}
+
+/*Side buttons: edit, change, delete, cancel*/
+.tableButton{
+    width: 100%;
+    height: auto;
+    padding: calc(0.5vh + 0.5vw);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: red;
+}
+.tableButton:hover{
+    background-color: var(--contrast);
+}
+.tableButton:active{
+    transform: scale(0.9);
+}
+/*Form button (menu buttons)*/
+.formButton{
+    margin-top: 5%;
+    width: 50% !important;
+}
+
+/*---- NAVIGATION SECTION -----*/
+.navigation-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.navigation-container form{
+    width: 50%;
+}
+.navigation-button{
+    width: 100%;
+}

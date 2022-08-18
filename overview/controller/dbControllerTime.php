@@ -96,20 +96,6 @@
         return $totalAmount;        
     }
 
-    // -----------------------------------------------------------------------
-
-    // create <option> elements for <select> which contains expenses categories
-    function fillCategoryOptions($table){
-        // Get categories
-        $categories = getCategories($table);
-        // Default selected element blank
-        echo "<option disabled selected></option>";
-        // Print category <option>
-        while ($row = mysqli_fetch_assoc($categories)){
-            echo "<option>".$row['category']."</option>";
-        }        
-    }
-
     // ------------------------------ CREATE JSON OBJECTS BY PHP ARRAYS ----------------
 
     // Prepare JSON object to send data for graphic of Total Data in DB

@@ -14,9 +14,5 @@
     }
 
     // ----------------------------- FUNCTIONS ------------------------
-    function printConfirmationInvestment(){
-        if (isset($_POST['investmentForm'])){
-            echo "<h2>Data inserted into the database!</h2>";       
-        }
-    }
+
 ?>

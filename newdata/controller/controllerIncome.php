@@ -20,10 +20,10 @@
 
     // ----------------------------- FUNCTIONS ------------------------
 
-    // Print confirmation message when data is inserted into DB
-    function printIncomeConfirmationMessage(){
-        if (isset($_POST['incomeForm'])) {
-            echo "<h2>Data inserted into the database!</h2>";
+    // Print confirmation message when data is inserted into DB (used by expenses and investment too)
+    function printConfirmationMessage(){
+        if (isset($_POST['concept'])) {
+            echo "<h2>'".$_POST['concept']."' inserted into the database!</h2>";
         }
     }
 
