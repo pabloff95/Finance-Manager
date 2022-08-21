@@ -10,12 +10,16 @@
     --contrast-dark:#999300;
     --inputBG: #EDE2F1;
     --inputFocus: #e8c5f5;
+    --formBackground: white;
 }
 
 body, html{
     margin: 0;
     overflow-x: hidden;
     width: 100%;
+    /*Background colour: https://cssgradient.io/*/
+    background: rgb(0,212,255);
+    background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(4,132,202,1) 50%, rgba(9,9,121,1) 79%, rgba(2,0,36,1) 96%);
 }
 /*MENU BUTTONS STYLE*/
 .menuButton{

@@ -46,6 +46,6 @@
 
     // Get current month as text
     function currentMonth(){
-        echo "<h1>". date('F')."</h1>";
+        echo "<h1>". strtoupper(date('F'))."</h1>";
     }
 ?>

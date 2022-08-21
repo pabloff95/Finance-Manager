@@ -1,6 +1,6 @@
 
 /*Content positioning*/
-body{
+html, body{
     height: 100%;
 }
 main{
@@ -8,12 +8,12 @@ main{
     width: 100%;
     /*Center flexbox*/
     display: flex;
-    text-align: center;
     flex-direction: column;
+    text-align: center;    
     justify-content: center;
 }
 /*Main menu*/
-#managementMenu{
+#managementMenu{    
     position: absolute;
     top: 50%;
     left: 50%;
@@ -43,6 +43,7 @@ main{
 
 /*Tables style*/
 .table{
+    background-color: var(--formBackground);
     /*Dimensions*/
     width: auto;
     /*Position*/
