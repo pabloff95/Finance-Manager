@@ -24,18 +24,42 @@ main{
     padding-bottom: 1vh;
 }
 
+/*Title style*/
+.title{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
+}
+.title h1{
+    margin: 0;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+
 /*Tables style*/
 .table{
     /*Dimensions*/
     width: auto;
     /*Position*/
     margin: 0 auto;   
+    /*Border*/
+    border: 3px solid black;
+    border-radius: 15px;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
 }
 
 table{
     white-space: nowrap;
     border-collapse:collapse;
     font-size: 1rem;
+    margin: 0 auto;   
 }
 
 td, th{
@@ -68,7 +92,7 @@ input[type="text"]{
 
 /*--------BUTTONS ---------*/
 /*Header buttons*/
-.header{
+.header, .header-unordered{
     /*Border*/
     border: 3px black solid;
     /*Colours*/
@@ -76,8 +100,11 @@ input[type="text"]{
     color: black;
     border-color: black;   
     /*Other*/
-    cursor: pointer;    
     padding: 0;
+    text-transform: uppercase;
+}
+.header{
+    cursor: pointer;    
 }
 .header:hover{
     /*Colours*/
@@ -95,8 +122,8 @@ input[type="text"]{
     background-color: transparent;
     font-size: 1rem;
     font-weight: bold;
-    text-transform: uppercase;
     border-color: transparent;
+    text-transform: uppercase;
 }
 
 /*Side buttons: edit, change, delete, cancel*/

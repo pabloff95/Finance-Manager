@@ -71,7 +71,17 @@
     <!-- MANAGE EXPENSES --> 
     <?php } else if ($_GET['data'] == "expenses"){ ?>
         <div class="table">
-            <h1 class="title">Manage expenses</h1>
+
+            <div class="title">
+                <form action="management.php?data=categories_income&page=1" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>Manage expenses</h1>
+                <form action="management.php?data=income&page=1" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
+
         <table>
             <tr>
                 <th class="header">
@@ -120,7 +130,17 @@
     <!-- MANAGE INCOME --> 
     <?php } else if ($_GET['data'] == "income") {?>
         <div class="table">
-            <h1 class="title">Manage income</h1>
+            
+            <div class="title">
+                    <form action="management.php?data=expenses&page=1" method="POST">
+                        <input type="submit" value="<" class="change-record">
+                    </form>
+                    <h1>Manage income</h1>
+                    <form action="management.php?data=investment&page=1" method="POST">
+                        <input type="submit" value=">" class="change-record">
+                    </form>
+                </div>
+
         <table>
             <tr class="header-row">
                 <th class="header">
@@ -169,10 +189,20 @@
     <!-- MANAGE CATEGORIES  EXPENSES --> 
     <?php } else if ($_GET['data'] == "categories_expenses") {?>
         <div class="table">
-            <h1 class="title">Manage categories expenses</h1>
+
+            <div class="title">
+                <form action="management.php?data=investment&page=1" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>Manage categories expenses</h1>
+                <form action="management.php?data=categories_income&page=1" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
+
         <table>
             <tr>
-                <th>Category</th>
+                <th class="header-unordered">Category</th>
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
@@ -195,10 +225,20 @@
     <!-- MANAGE CATEGORIES  INCOME --> 
     <?php } else if ($_GET['data'] == "categories_income") {?>
         <div class="table">
-            <h1 class="title">Manage categories income</h1>
+
+            <div class="title">
+                <form action="management.php?data=categories_expenses&page=1" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>Manage categories income</h1>
+                <form action="management.php?data=expenses&page=1" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
+            
         <table>
             <tr>
-                <th>Category</th>
+                <th class="header-unordered">Category</th>
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
@@ -221,7 +261,17 @@
     <!-- MANAGE INVESTMENT --> 
     <?php } else if ($_GET['data'] == "investment") {?>
         <div class="table">
-            <h1 class="title">Manage investment</h1>
+
+            <div class="title">
+                <form action="management.php?data=income&page=1" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>Manage investment</h1>
+                <form action="management.php?data=categories_expenses&page=1" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
+
         <table>
             <tr>
                 <th class="header">

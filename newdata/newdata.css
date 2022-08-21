@@ -31,15 +31,26 @@ main{
     margin: 0 auto;
 }
 
-/*Buttons*/
+/*Buttons in forms*/
 form{
     padding-top: 1vh;    
     padding-bottom: 1vh;
 }
 
-
-
-
+/*Title style*/
+.title{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+.title h1{
+    margin: 0;
+    padding-left: 2%;
+    padding-right: 2%;
+}
 
 
 

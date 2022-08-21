@@ -6,6 +6,7 @@
     <title>Finance manager</title>
     <link rel="stylesheet" href="generalStyle.css" type="text/css">
     <link rel="stylesheet" href="index/index.css" type="text/css">
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/finances/index/indexController.php";     ?>
 </head>
 <body>
     <main>
@@ -30,5 +31,11 @@
             }
         ?>
     </main>
+    <aside>
+        <div id="currentMonth">
+            <?php currentMonth(); 
+                  currentMonthInformation(); ?>
+        </div>
+    </aside>
 </body>
 </html>

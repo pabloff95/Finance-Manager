@@ -57,7 +57,16 @@
             </form>
             <!-- ADD NEW RECORD FOR EXPENSES -->
         <?php } else if ($_GET['record'] == "expenses") { ?>
-            <h1>New expense</h1>
+            <div class="title">
+                <form action="newdata.php?record=invest" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>New expense</h1>
+                <form action="newdata.php?record=income" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
+
             <div class="dataForm">
                 <form action="newdata.php?record=expenses" method="POST">
                     <label>Expense</label><br>
@@ -89,7 +98,16 @@
 
             <!-- ADD NEW RECORD FOR INCOME -->
         <?php } else if ($_GET['record'] == "income") { ?>
-            <h1>New income</h1>
+            <div class="title">
+                <form action="newdata.php?record=expenses" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>New income</h1>
+                <form action="newdata.php?record=invest" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
+            
             <div class="dataForm">                
                 <form action="newdata.php?record=income" method="POST">
                     <label>Income</label><br>
@@ -120,7 +138,16 @@
             </div>
 
         <?php } else if ($_GET['record'] == "invest") { ?>
-            <h1>New investment</h1>
+            <div class="title">
+                <form action="newdata.php?record=income" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>New investment</h1>
+                <form action="newdata.php?record=expenses" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
+
             <div class="dataForm">                
                 <form action="newdata.php?record=invest" method="POST">
                     <label>Category</label><br>
