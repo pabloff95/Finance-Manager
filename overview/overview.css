@@ -2,42 +2,159 @@ html, body{
     margin: 0;
     width: 100%;
     height: 100%;
+    background: unset;
 }
-
+/*---- GRID STRUCTURE -----*/
 body{
     display: grid;
     grid-template-rows: 10% auto;
     grid-template-columns: 15% auto;
 }
-
 header{
     background-color: brown;
     grid-column: 1/ span 2;
-    text-align: center;
+    /*Flexbox*/
+    display: flex;
+    flex-direction: row;
+    /*borders*/
+    border-bottom: 3px black solid;
 }
 aside{
-    background-color: burlywood;
+    background-color: #D5D7FF;
     padding: 5%;
+    /*borders*/
+    border-right: 3px black solid;
 }
-aside form{
-    border: 3px solid black;
-    padding: 5%;
-    background-color: lightsteelblue;
-}
-aside form h3{
-    margin-top: 0.5%;
-    margin-bottom: 0.5%;
-}
-
 main{
-    background-color: coral;
     display: grid;
     grid-template-columns: 50% 50%;
-}
-.mainSection{
-    display: grid;
     grid-template-rows: 50% 50%;
 }
+/*---------- HEADER SECTION ----------*/
+header{
+    background-color: black;
+    color: white;
+}
+#header-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+}
+.header-section{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.header-section form{
+    width: 90%;
+    height: 90%;
+    padding: 5%;
+}
+.header-button{
+    /*Dimensions*/
+    height: 90%;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    /*Colours*/
+    background-color: var(--main);
+    color: black;
+    /*Border*/
+    border: 3px solid black;
+    border-radius: 10px;
+    /*Other*/
+    cursor: pointer;
+}
+.header-button:hover{
+    background-color: var(--contrast);
+    transform: scale(1.1);
+}
 
+/*-------- ASIDE SECTION: DISPLAY DATA FORMS -----*/
+.search-form{
+    /*Border*/
+    border: 3px solid black;
+    border-radius: 10px;
+    /*General style*/
+    color: black;
+    background-color: white;
+    padding: 2.5%;    
+}
+aside form h3{
+    margin-top: 0.2%;
+    margin-bottom: 4%;
+}
 
+/*Inputs (class in generalStyle.css) */
+.inputField{
+    width: 95% !important;
+    height: 3vh !important;
+    font-size: 1rem !important;
+}
+aside form label{
+    font-size: 1rem;
+}
 
+/*Buttons*/
+.search-button{
+    /*Dimensions*/
+    width: 95%;
+    height: 3vh;
+    font-size: 1rem;
+    font-weight: bold;
+    /*Border*/
+    border: 2px solid;
+    border-radius: 15px;
+    /*Colours*/
+    background-color: var(--main);
+    color: black;
+    border-color: black;   
+    /*Other*/
+    cursor: pointer;
+}
+.search-button:hover{
+    background-color: var(--contrast);
+}
+.search-button:active{
+    transform: scale(.9);
+}
+
+/*------ CHARTS --------*/
+/*Grid layout*/
+main{
+    background-color: #d7dcf3;
+}
+.category{
+    grid-column: 1/ span 2;
+}
+.chart-container{
+    display: grid;
+    grid-template-rows: 10% 90%;
+}
+/*Title*/
+.title-container{
+    width: 97%;
+    height: 100%;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: center;
+    background-color: black;
+}
+.chart-title{    
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--main);
+    margin: 0;    
+    padding: 0.5%;
+}
+/*Chart settings*/
+.chart{
+    margin: 2%;
+}
+.canvasjs-chart-canvas{
+    border: 2px solid black;
+}

@@ -96,6 +96,13 @@ function fillSelectCategory(id) {
     });  
 }
 
+// Remove elements that are automatically created by the library CanvasJS
+function removePlotElements(){
+    var spam = document.getElementsByClassName("canvasjs-chart-credit");
+    while(spam.length > 0){
+        spam[0].parentNode.removeChild(spam[0]);
+    }
+}
 
 
 

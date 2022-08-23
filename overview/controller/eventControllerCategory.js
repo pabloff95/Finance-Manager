@@ -5,7 +5,8 @@ window.addEventListener("DOMContentLoaded", function() {
     // Creat plots
     categoryPlot(dataCategoriesMonths, category, "months", "categoryChartMonths", "line");
     categoryPlot(dataCategoriesYears, category, "years", "categoryChartYears", "column");
-    // Remove elements that are automatically created by the library CanvasJS
+
+    // Remove elements that are automatically created by the library CanvasJS (function defined in "eventController.js")
     removePlotElements();
     window.addEventListener("resize", function(){ // some elements reappear on resizing the window
         removePlotElements();
@@ -16,17 +17,12 @@ window.addEventListener("DOMContentLoaded", function() {
 function categoryPlot(dataCategories, category, period, id, type){
     // Define title 
     if (period == "months") {
-        var title = "Monthly spent";
         var titleY = category;
     } else if (period == "years") {
-        var title = "Yearly spent";
         var titleY = "";
     }
     // Create chart
     var chart = new CanvasJS.Chart(id, {
-        title: {
-            text: title
-        },
         axisY: {
             title: titleY,
             minimum: 0
@@ -37,12 +33,4 @@ function categoryPlot(dataCategories, category, period, id, type){
         }]
     });
     chart.render();
-}
-
-// Remove elements that are automatically created by the library CanvasJS
-function removePlotElements(){
-    var spam = document.getElementsByClassName("canvasjs-chart-credit");
-    while(spam.length > 0){
-        spam[0].parentNode.removeChild(spam[0]);
-    }
 }

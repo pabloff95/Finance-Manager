@@ -66,8 +66,6 @@ body, html{
 .formButton:hover{
     /*Colours*/
     background-color: var(--contrast);
-    color: black;
-    border-color: black;
 }
 .formButton:active{
     transform: scale(0.9);
