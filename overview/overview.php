@@ -111,6 +111,33 @@
                 <input type="submit" value="SHOW" class="search-button">
             </form>
         </details><br>
+        
+        <?php
+        // Add text explaining the information that is being displayed
+        if (isset($_GET['time'])) {
+            switch ($_GET['time']) {
+                case "period":
+                    echo "<p class='displayed-information'>
+                            <b>Displaying:</b></br>". str_replace("-", "/", $_POST['fromDate']). " - ". str_replace("-", "/", $_POST['toDate'])."
+                        </p>";
+                    break;
+                case "month":
+                    echo "<p class='displayed-information'>
+                            <b>Displaying:</b></br>". $_POST['selectedMonth']. " / ". $_POST['selectedYear']."
+                        </p>";
+                    break;
+                case "year":
+                    echo "<p class='displayed-information'>
+                            <b>Displaying:</b></br>". $_POST['displayYear'] . "
+                        </p>";
+                    break;
+            }
+        } else if (isset($_GET['category'])){
+            echo "<p class='displayed-information'>
+                    <b>Displaying:</b></br>" . ucfirst($_GET['category']) . " (" . $_POST['selectedCategory']. ")
+                </p>";
+        }
+        ?>
 
     </aside>
 

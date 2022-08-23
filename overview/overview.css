@@ -132,6 +132,12 @@ aside form label{
     transform: scale(.9);
 }
 
+/*Text with "display" information*/
+.displayed-information{
+    margin-top: 50%;
+    font-size: 1.15rem;
+}
+
 /*------ CHARTS --------*/
 /*Grid layout*/
 main{
