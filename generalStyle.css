@@ -1,0 +1,114 @@
+*{
+    font-family: Helvetica, Arial ,sans-serif;
+}
+
+:root{
+    --main:#8F4AFF;
+    --main-medium:#722CE6;
+    --main-dark:#440F99;
+    --contrast:#E6DE2C;
+    --contrast-dark:#999300;
+    --inputBG: #EDE2F1;
+    --inputFocus: #e8c5f5;
+    --formBackground: white;
+}
+
+body, html{
+    margin: 0;
+    overflow-x: hidden;
+    width: 100%;
+    /*Background colour: https://cssgradient.io/*/
+    background: rgb(0,212,255);
+    background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(4,132,202,1) 50%, rgba(9,9,121,1) 79%, rgba(2,0,36,1) 96%);
+}
+/*MENU BUTTONS STYLE*/
+.menuButton{
+    /*Dimensions*/
+    width: 50vw;
+    height: 10vh;
+    font-size: 3rem;
+    /*Border*/
+    border: 3px solid;
+    border-radius: 15px;
+    /*Colours*/
+    background-color: var(--main);
+    color: black;
+    border-color: black;   
+    /*Other*/
+    cursor: pointer;
+}
+.menuButton:hover{
+    /*Colours*/
+    background-color: var(--contrast);
+    color: black;
+    border-color: black;
+}
+.menuButton:active{
+    transform: scale(0.9);
+}
+
+/*FORM BUTTONS STYLE*/
+.formButton{
+    /*Dimensions*/
+    width: 30vw;
+    height: 5vh;
+    font-size: 1.25rem;
+    /*Border*/
+    border: 2px solid;
+    border-radius: 15px;
+    /*Colours*/
+    background-color: var(--main);
+    color: black;
+    border-color: black;   
+    /*Other*/
+    cursor: pointer;
+}
+.formButton:hover{
+    /*Colours*/
+    background-color: var(--contrast);
+}
+.formButton:active{
+    transform: scale(0.9);
+}
+
+/*INPUT STYLE: text, number, date, select*/
+.inputField{
+    /*General*/
+    width: 30vw;
+    height: 5vh;
+    background-color: var(--inputBG);
+    margin-bottom: 2vh;
+    font-size: 1.25rem;
+    /*Border style*/
+    border-style: hidden;
+    border-bottom: 2px solid var(--main-dark);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.inputField:focus{
+    outline: 0;
+    border-bottom-color: var(--main);
+    background-color: var(--inputFocus);
+}
+/*Label font*/
+label{
+    font-size: 1.25rem;
+}
+
+
+/*Change record (GET in URL) button "<" / ">"*/
+.change-record{
+    /*General*/
+    font-size: 1.25rem;
+    cursor: pointer;
+    /*Border style*/
+    border: 3px solid;
+    border-radius: 5px;
+    /*Colours*/
+    background-color: var(--main);
+    color: black;
+    border-color: black;   
+}
+.change-record:hover{
+    background-color: var(--contrast);
+}

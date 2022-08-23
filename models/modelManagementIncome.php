@@ -29,7 +29,7 @@
     function editIncome($id, $income, $date, $amount, $category){
         $db = connectDB();
         // Query
-        $sql_edit = $db->prepare("UPDATE income SET income = ?, date = ?, amount = ?, category = ? WHERE id = ?");
+        $sql_edit = $db->prepare("UPDATE income SET concept = ?, date = ?, amount = ?, category = ? WHERE id = ?");
         $sql_edit->bind_param("ssisi", $income, $date, $amount, $category, $id);
         $sql_edit->execute();
         // Close connecitons

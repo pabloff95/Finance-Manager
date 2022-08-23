@@ -16,15 +16,28 @@
     // Print data retrieved form DB
     function fillExpensesTable(){
         $expenses = getExpenses(tableOrder());
+        // Get limits according to $_GET['page'] --> see "controllerNavigation.php"
+        $lowLimit = getLimits()["lowerLimit"];
+        $upLimit =  getLimits()["upperLimit"];
+        $x = 1; // iterator, value to display data between the limits
+        $printed = 0; // Keep track of printed table rows
         while($row = mysqli_fetch_assoc($expenses)){
-            echo "<tr>";
-                recordFormatExpenses($row); // read function bellow           
-            echo "</tr>";
+            if ($x > $lowLimit && $x <= $upLimit) {  
+                echo "<tr>";
+                    recordFormatExpenses($row); // read function bellow           
+                echo "</tr>";
+                $printed++;
+            }
+            $x++;
+        }
+        // Fill with empty cells if there are not enough records
+        for ($printed; $printed < $GLOBALS['records_per_page']; $printed++){
+            echo "<tr><td colspan='100%' class='empty-row'>&nbsp;</td></tr>";
         }
         echo "</table>"; // Close table html tag
         // If clicked on edit, add form element --> needs to be outside the table because form cannot be child of <table> / <tr> elements
         if (isset($_POST['edit'])){
-            echo "<form action='management.php?data=expenses' method='POST' id='changeExpenseForm'> </form>";
+            echo "<form action='management.php?data=expenses&page=".$_GET['page']."' method='POST' id='changeExpenseForm'> </form>";
         }
     }
 
@@ -35,19 +48,19 @@
             echo "
                     <input type='hidden' value='".$row['id']."' name='inputId' form='changeExpenseForm'>
 
-                    <td><input type='text' value='".$row['amount']."' name='inputAmount' form='changeExpenseForm' ></td>
-                    <td><input type='text' value='".$row['concept']."' name='inputConcept' form='changeExpenseForm'></td>
+                    <td><input type='text' value='".$row['amount']."' name='inputAmount' form='changeExpenseForm' class = 'inputField' ></td>
+                    <td><input type='text' value='".$row['concept']."' name='inputConcept' form='changeExpenseForm' class = 'inputField' ></td>
                     <td>
-                        <select name='inputCategory' form='changeExpenseForm'>";
+                        <select name='inputCategory' form='changeExpenseForm' class = 'inputField' >";
                         printEditCategories($row['category']);
             echo        "<select>                        
                     </td>
-                    <td><input type='date' value='".$row['date']."' name='inputDate' form='changeExpenseForm'></td>
-                    <td><input type='submit' value='Change' name='changeExpense' form='changeExpenseForm'></td>
+                    <td><input type='date' value='".$row['date']."' name='inputDate' form='changeExpenseForm' class = 'inputField' ></td>
+                    <td><input type='submit' value='Change' name='changeExpense' form='changeExpenseForm' class='tableButton'></td>
                                       
                   <td>
-                    <form action='management.php?data=expenses' method='POST'>
-                        <input type='submit' value='Cancel' name='cancel'>
+                    <form action='management.php?data=expenses&page=".$_GET['page']."' method='POST'>
+                        <input type='submit' value='Cancel' name='cancel' class='tableButton'>
                     </form>
                   </td>";
         } else {
@@ -56,13 +69,13 @@
                   <td>".$row['concept']."</td>
                   <td>".$row['category']."</td>
                   <td>".$row['date']."</td>
-                  <td><form action='management.php?data=expenses' method='POST'>
-                        <input type='submit' value='Edit' name='edit'>
+                  <td><form action='management.php?data=expenses&page=".$_GET['page']."' method='POST'>
+                        <input type='submit' value='Edit' name='edit' class='tableButton'>
                         <input type='hidden' value='".$row['id']."' name='editId'>
                       </form></td>
                   <td>
-                    <form action='management.php?data=expenses' method='POST'>
-                        <input type='submit' value='Delete' name='deleteExpense'>
+                    <form action='management.php?data=expenses&page=".$_GET['page']."' method='POST'>
+                        <input type='submit' value='Delete' name='deleteExpense' class='tableButton'>
                         <input type='hidden' value='".$row['id']."' name='deleteId'>
                     </form>
                   </td>";

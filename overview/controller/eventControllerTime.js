@@ -16,8 +16,10 @@ window.addEventListener("DOMContentLoaded", function(event){
             // Get PHP array with DB data as JSON element (value stored in hidden input)
             var dataTotalDB = JSON.parse(document.getElementById("jsonTotalValues").value);
             // Create chart
-            createPieChart("Finance records overview", "General overview", dataTotalDB, "chartTotalData");        
+            createPieChart("", dataTotalDB, "chartTotalData");        
         }
+    } else {
+        createHTMLP("chartTotalData", "No data registered during this period");        
     }
 
     // -------------- EXPENSES CHART -------------
@@ -25,7 +27,9 @@ window.addEventListener("DOMContentLoaded", function(event){
         // Get PHP array with DB data as JSON element (value stored in hidden input)
         var dataCategoryExpenses = JSON.parse(document.getElementById("jsonCategoryExpensesValues").value);
         // Create chart
-        createPieChart("EXPENSES", "Total: " + totalExpenses + "€", dataCategoryExpenses, "chartCategoryExpenses");        
+        createPieChart("Total: " + totalExpenses + "€", dataCategoryExpenses, "chartCategoryExpenses");        
+    } else {
+        createHTMLP("chartCategoryExpenses", "No expenses registered during this period");        
     }
 
     // -------------- INCOME CHART -------------
@@ -33,7 +37,9 @@ window.addEventListener("DOMContentLoaded", function(event){
         // Get PHP array with DB data as JSON element (value stored in hidden input)
         var dataCategoryIncome = JSON.parse(document.getElementById("jsonCategoryIncomeValues").value);    
         // Create chart
-        createPieChart("INCOME", "Total: " + totalIncome + "€", dataCategoryIncome, "chartCategoryIncome");        
+        createPieChart("Total: " + totalIncome + "€", dataCategoryIncome, "chartCategoryIncome");        
+    } else {
+        createHTMLP("chartCategoryIncome", "No income registered during this period");        
     }
 
     // -------------- INVESTMENT CHART -------------
@@ -41,19 +47,23 @@ window.addEventListener("DOMContentLoaded", function(event){
         // Get PHP array with DB data as JSON element (value stored in hidden input)
         var dataCategoryInvestment = JSON.parse(document.getElementById("jsonCategoryInvestmentValues").value);   
         // Create chart
-        createPieChart("INVESTMENTS", "Total: " + totalInvestments + "€", dataCategoryInvestment, "chartInvestments");        
+        createPieChart("Total: " + totalInvestments + "€", dataCategoryInvestment, "chartInvestments");        
+    } else {
+        createHTMLP("chartInvestments", "No investments registered during this period");        
     }
 
+    // Remove elements that are automatically created by the library CanvasJS (function defined in "eventController.js")
+    removePlotElements();
+    window.addEventListener("resize", function(){ // some elements reappear on resizing the window
+        removePlotElements();
+    }); 
 });
 
 // Create chart using CanvasJS library
-function createPieChart(title, subtitle, data, container){
+function createPieChart(subtitle, data, container){
     // create chart
     var chart = new CanvasJS.Chart(container, {
         animationEnabled: true,
-        title: {
-            text: title
-        },
         subtitles: [{
             text: subtitle
         }],
@@ -91,3 +101,10 @@ function detailDebt(totalIncome, totalInvestments, totalExpenses){
     container.appendChild(list);
 }
 
+// Function to create a <p> element
+function createHTMLP(id, text){
+    let element = document.createElement("p");
+    element.innerText = text;
+    let parent = document.getElementById(id);
+    parent.appendChild(element);
+}

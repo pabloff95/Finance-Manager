@@ -22,11 +22,12 @@
         }
         // Get unique months per year
         $uniqueCombinations = array_unique($datePeriod);
+        $uniqueCombinations = array_values($uniqueCombinations);
         //  Obtain the total amount (€) of the unique months per year (yyyy-mm) or year (yyyy)
         for ($i = 0 ; $i < count($uniqueCombinations); $i++) {
             $totalAmount = 0;
-            for ($j = 0 ; $j < count($dates); $j++) {
-                if ($uniqueCombinations[$i] == substr($dates[$j], 0, $limit)){
+            for ($j = 0 ; $j < count($datePeriod); $j++) {
+                if ($uniqueCombinations[$i] == $datePeriod[$j]){
                     $totalAmount += $amounts[$j];
                 }
             }
@@ -50,13 +51,31 @@
     }
 
 
-
-    function test(){
-        $values = categoryHistoryData("Salario", "income", "months");
-        ksort($values); // Orders array by key from lower to higher
-        foreach($values as $key => $value) {
-            echo "Date $key : $value € <br>";
+    // Create hidden inputs with the categories from all finance elements 
+    function hiddenCategories(){
+        // Retrieve data
+        $expenses = getAllCategories("expenses");
+        $income = getAllCategories("income");
+        $investment = getAllCategories("investment");
+        // Prepare arrays
+        $expensesCategories = "";
+        $incomeCategories = "";
+        $investmentCategories = "";
+        // Fill arrays
+        while($row = mysqli_fetch_assoc($expenses)){
+            $expensesCategories .= $row['category'] . "/";
         }
+        while($row = mysqli_fetch_assoc($income)){
+            $incomeCategories .= $row['category'] . "/";
+        }
+        while($row = mysqli_fetch_assoc($investment)){
+            $investmentCategories .= $row['category'] . "/";
+        }
+        // Create HTML elements
+        echo "<input type='hidden' id='expensesCategories' value='" . $expensesCategories . "' />";
+        echo "<input type='hidden' id='incomeCategories' value='" . $incomeCategories . "' />";
+        echo "<input type='hidden' id='investmentCategories' value='" . $investmentCategories . "' />";
     }
+
 
 ?>

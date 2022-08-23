@@ -29,7 +29,7 @@ function getCategoryAmountPeriod($category, $table, $from, $to){
     return $result;
 }
 
-// Get all diferent values of categories from table
+// Get all diferent values of categories from table considering the time period
 function getCategories($table){
     // conect to DB
     $db = connectDB();
@@ -40,6 +40,18 @@ function getCategories($table){
         $dates= getPeriod();
         $sql_select = "SELECT DISTINCT category FROM ". $table . " WHERE date BETWEEN '".$dates[0]."' AND '".$dates[1]."'";
     }    
+    $result = mysqli_query($db, $sql_select);
+    // Close connection
+    mysqli_close($db);  
+
+    return $result;
+}
+// Get all different categories (without considering the time period)
+function getAllCategories($table){
+    // conect to DB
+    $db = connectDB();
+    // Query
+    $sql_select = "SELECT DISTINCT category FROM ". $table;    
     $result = mysqli_query($db, $sql_select);
     // Close connection
     mysqli_close($db);  

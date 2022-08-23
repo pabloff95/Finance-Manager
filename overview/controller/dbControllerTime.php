@@ -96,20 +96,6 @@
         return $totalAmount;        
     }
 
-    // -----------------------------------------------------------------------
-
-    // create <option> elements for <select> which contains expenses categories
-    function fillCategoryOptions($table){
-        // Get categories
-        $categories = getCategories($table);
-        // Default selected element blank
-        echo "<option disabled selected></option>";
-        // Print category <option>
-        while ($row = mysqli_fetch_assoc($categories)){
-            echo "<option>".$row['category']."</option>";
-        }        
-    }
-
     // ------------------------------ CREATE JSON OBJECTS BY PHP ARRAYS ----------------
 
     // Prepare JSON object to send data for graphic of Total Data in DB
@@ -121,9 +107,16 @@
         $totalSaved = $totalIncome - $totalExpenses - $totalInvestment;
         if ($totalSaved < 0 ) {$totalSaved = 0;}
         // Get percentages
-        $savedPercentage = ($totalSaved / $totalIncome)*100;
-        $expensesPercentage = ($totalExpenses / $totalIncome)*100;
-        $investmentPercentage = ($totalInvestment / $totalIncome)*100;
+        if ($totalIncome > 0){
+            $savedPercentage = ($totalSaved / $totalIncome)*100;
+            $expensesPercentage = ($totalExpenses / $totalIncome)*100;
+            $investmentPercentage = ($totalInvestment / $totalIncome)*100;
+        } else {
+            $savedPercentage = 0;
+            $expensesPercentage = 0;
+            $investmentPercentage = 0;
+        }
+        
         // Create arrays to send to JS: label with concept, y with % value, money with total amount, legenText with the text to be displayed in the legend
         $totalData = array(
             array("label" => "Expenses", 

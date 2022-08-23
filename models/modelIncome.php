@@ -6,7 +6,7 @@ function insertIncome($income, $date, $amount, $category){
     // conect to DB
     $db = connectDB();
     // Prepare query
-    $sql_insert =$db->prepare("INSERT INTO income (income, date, amount, category) VALUES (?, ?, ?, ?)");
+    $sql_insert =$db->prepare("INSERT INTO income (concept, date, amount, category) VALUES (?, ?, ?, ?)");
     $sql_insert->bind_param("ssis", $income, $date, $amount, $category);
     $sql_insert->execute();
     // Close connections

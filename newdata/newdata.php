@@ -1,135 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Finance manager</title>
-    <?php 
-        require $_SERVER['DOCUMENT_ROOT'] . "/finances/newdata/controller/controllerExpenses.php"; // Expenses controller
-        require $_SERVER['DOCUMENT_ROOT'] . "/finances/newdata/controller/controllerIncome.php"; // Income controller
-        require $_SERVER['DOCUMENT_ROOT'] . "/finances/newdata/controller/controllerInvestment.php"; // Investment controller
+    <link rel="stylesheet" href="/finances/generalStyle.css" type="text/css">
+    <link rel="stylesheet" href="newdata.css" type="text/css">
+    <?php
+    require $_SERVER['DOCUMENT_ROOT'] . "/finances/newdata/controller/controllerExpenses.php"; // Expenses controller
+    require $_SERVER['DOCUMENT_ROOT'] . "/finances/newdata/controller/controllerIncome.php"; // Income controller
+    require $_SERVER['DOCUMENT_ROOT'] . "/finances/newdata/controller/controllerInvestment.php"; // Investment controller
 
-        // Load JS files according to form displayed (by $_GET['record'], read bellow)
-        if (isset($_GET['record']) && $_GET['record'] == "expenses") {
+    // Load JS files according to form displayed (by $_GET['record'], read bellow)
+    if (isset($_GET['record']) && $_GET['record'] == "expenses") {
     ?>
-            <script src="controller/eventControllerExpenses.js" ></script>
+        <script src="controller/eventControllerExpenses.js"></script>
     <?php
-        } else if (isset($_GET['record']) && $_GET['record'] == "income") {
+    } else if (isset($_GET['record']) && $_GET['record'] == "income") {
     ?>
-            <script src="controller/eventControllerIncome.js" ></script>
+        <script src="controller/eventControllerIncome.js"></script>
     <?php
-        } else if (isset($_GET['record']) && $_GET['record'] == "invest") {
+    } else if (isset($_GET['record']) && $_GET['record'] == "invest") {
     ?>
-            <script src="controller/eventControllerInvestment.js" ></script>
-    <?php   } ?>       
+        <script src="controller/eventControllerInvestment.js"></script>
+    <?php   } ?>
 
     <script>
         // Set date field default value: today
-        window.addEventListener("load", function(event){
+        window.addEventListener("load", function(event) {
             document.getElementById('date').valueAsDate = new Date();
         });
     </script>
 </head>
+
 <body>
     <!-- SCREEN CONTROLLED BY $_GET['record']:
         - When not existing -> displays normal menu to chose data to record
         - When setted to expenses -> displays add expense menu
         - When setted to income -> displays add income menu
     -->
-    
-    <!-- SELECT RECORD TO BE ADDED SCREEN --> 
-    <?php if (!isset($_GET['record'])) { ?>
-        <form action="newdata.php?record=expenses" method="POST">
-            <input type="submit" value="EXPENSES">
-        </form>
-        <form action="newdata.php?record=income" method="POST">
-            <input type="submit" value="INCOME">
-        </form>
-        <form action="newdata.php?record=invest" method="POST">
-            <input type="submit" value="INVESTMENT">
-        </form>
 
-    <!-- ADD NEW RECORD FOR EXPENSES --> 
-    <?php } else if ($_GET['record'] == "expenses"){ ?>
-        <form action="newdata.php?record=expenses" method="POST">
-            <label>Expense</label>
-            <input type="text" name="concept"></br>
+    <!-- SELECT RECORD TO BE ADDED SCREEN -->
+    <main>
+        <?php if (!isset($_GET['record'])) { ?>
+            <form action="newdata.php?record=expenses" method="POST">
+                <input type="submit" value="EXPENSES" class="menuButton">
+            </form>
+            <form action="newdata.php?record=income" method="POST">
+                <input type="submit" value="INCOME" class="menuButton">
+            </form>
+            <form action="newdata.php?record=invest" method="POST">
+                <input type="submit" value="INVESTMENT" class="menuButton">
+            </form>
+            <form action="/finances/index.php" method="POST">
+                <input type="submit" value="MENU" class="menuButton">
+            </form>
+            <!-- ADD NEW RECORD FOR EXPENSES -->
+        <?php } else if ($_GET['record'] == "expenses") { ?>
+            <div class="title">
+                <form action="newdata.php?record=invest" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>New expense</h1>
+                <form action="newdata.php?record=income" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
 
-            <label>Category</label>
-            <select name="dbCategory" id="existingCategory">            
-                <?php printExpensesCategories(); ?>            
-            </select></br>
+            <div class="dataForm">
+                <form action="newdata.php?record=expenses" method="POST">
+                    <label>Expense</label><br>
+                    <input type="text" name="concept" class="inputField" required ></br>
 
-            <input type="checkbox" id="newCategoryBox">
-            <label>New category</label>
-            <input type="text" id="newCategory" name="newDBCategory"></br>
+                    <label>Category</label><br>
+                    <select name="dbCategory" id="existingCategory" class="inputField" required >
+                        <?php printExpensesCategories(); ?>
+                    </select></br>
 
-            <label>Date</label>
-            <input type="date" name="date" id="date"></br>
+                    <input type="checkbox" id="newCategoryBox">
+                    <label>New category</label><br>
+                    <input type="text" id="newCategory" name="newDBCategory" class="inputField" required ></br>
 
-            <label>Amount</label>
-            <input type="number" name="amount"></br>
+                    <label>Date</label><br>
+                    <input type="date" name="date" id="date" class="inputField" required ></br>
 
-            <?php printExpensesConfirmationMessage(); ?>
+                    <label>Amount</label><br>
+                    <input type="number" name="amount" class="inputField" required ></br>
 
-            <input type="submit" value="ADD" name="expensesForm">        
-        </form>
+                    <?php printConfirmationMessage(); ?>
 
-    <!-- ADD NEW RECORD FOR INCOME --> 
-    <?php } else if ($_GET['record'] == "income"){ ?>
-        <form action="newdata.php?record=income" method="POST">
-            <label>Income</label>
-            <input type="text" name="concept"></br>
+                    <input type="submit" value="ADD" name="expensesForm" class="formButton">
+                </form>
+                <form action="/finances/index.php" method="POST">
+                    <input type="submit" value="MENU" class="formButton">
+                </form>
+            </div>
 
-            <label>Category</label>
-            <select name="dbIncomeCategory" id="existingIncomeCategory">            
-                  <?php printIncomeCategories(); ?>      
-            </select></br>
+            <!-- ADD NEW RECORD FOR INCOME -->
+        <?php } else if ($_GET['record'] == "income") { ?>
+            <div class="title">
+                <form action="newdata.php?record=expenses" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>New income</h1>
+                <form action="newdata.php?record=invest" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
+            
+            <div class="dataForm">                
+                <form action="newdata.php?record=income" method="POST">
+                    <label>Income</label><br>
+                    <input type="text" name="concept" class="inputField" required ></br>
 
-            <input type="checkbox" id="newIncomeCategoryBox">
-            <label>New category</label>
-            <input type="text" id="newIncomeCategory" name="newIncomeDBCategory"></br>
+                    <label>Category</label><br>
+                    <select name="dbIncomeCategory" id="existingIncomeCategory" class="inputField" required >
+                        <?php printIncomeCategories(); ?>
+                    </select></br>
 
-            <label>Date</label>
-            <input type="date" name="date" id="date"></br>
+                    <input type="checkbox" id="newIncomeCategoryBox">
+                    <label>New category</label><br>
+                    <input type="text" id="newIncomeCategory" name="newIncomeDBCategory" class="inputField" required ></br>
 
-            <label>Amount</label>
-            <input type="number" name="amount"></br>
+                    <label>Date</label><br>
+                    <input type="date" name="date" id="date" class="inputField" required ></br>
 
-            <?php printIncomeConfirmationMessage(); ?>
+                    <label>Amount</label><br>
+                    <input type="number" name="amount" class="inputField" required ></br>
 
-            <input type="submit" value="ADD" name="incomeForm">        
-        </form>
-    
-    <?php } else if ($_GET['record'] == "invest"){ ?>
-        <form action="newdata.php?record=invest" method="POST">
+                    <?php printConfirmationMessage(); ?>
 
-            <label>Category</label>
-            <select id="investCategory" name="categoryInvestment">            
-                <option>Stock</option>
-                <option>Bond</option>
-                <option>Fund</option>
-                <option>Property</option>
-                <option>Other</option>
-            </select></br>
+                    <input type="submit" value="ADD" name="incomeForm" class="formButton">
+                </form>
+                <form action="/finances/index.php" method="POST">
+                    <input type="submit" value="MENU" class="formButton">
+                </form>
+            </div>
 
-            <div id="categoryFields"></div>
+        <?php } else if ($_GET['record'] == "invest") { ?>
+            <div class="title">
+                <form action="newdata.php?record=income" method="POST">
+                    <input type="submit" value="<" class="change-record">
+                </form>
+                <h1>New investment</h1>
+                <form action="newdata.php?record=expenses" method="POST">
+                    <input type="submit" value=">" class="change-record">
+                </form>
+            </div>
 
-            <label>Date</label>
-            <input type="date" id="date" name="dateInvestment"></br>
+            <div class="dataForm">                
+                <form action="newdata.php?record=invest" method="POST">
+                    <label>Category</label><br>
+                    <select id="investCategory" name="categoryInvestment" class="inputField" required >
+                        <option>Stock</option>
+                        <option>Bond</option>
+                        <option>Fund</option>
+                        <option>Property</option>
+                        <option>Other</option>
+                    </select></br>
 
-            <label>Amount</label>
-            <input type="number" name="amountInvestment"></br>
+                    <div id="categoryFields"></div>
 
-            <?php printConfirmationInvestment(); ?>
+                    <label>Date</label><br>
+                    <input type="date" id="date" name="dateInvestment" class="inputField" required ></br>
 
-            <input type="submit" value="ADD" name="investmentForm">        
-    </form>
-    <?php } ?>    
+                    <label>Amount</label><br>
+                    <input type="number" name="amountInvestment" class="inputField" required ></br>
 
-    <!-- BACK TO MENU (shared by all other menus)--> 
-    <form action="/finances/index.php" method="POST">
-        <input type="submit" value="MENU">
-    </form>
+                    <?php printConfirmationMessage(); ?>
 
+                    <input type="submit" value="ADD" name="investmentForm" class="formButton">
+                </form>
+                <form action="/finances/index.php" method="POST">
+                    <input type="submit" value="MENU" class="formButton">
+                </form>
+            </div>
+
+        <?php } ?>
+
+    </main>
 </body>
+
 </html>
