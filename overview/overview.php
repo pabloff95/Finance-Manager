@@ -64,45 +64,53 @@
     </header>
 
     <aside>
-        <form action="overview.php?time=period" method="POST" class="search-form">
-            <h3>Specific period</h3>
-            <label>From</label>
-            <input type="date" name="fromDate" class="inputField" required><br>
+        <details class="search-form">
+            <summary><h3>Specific period</h3></summary>
+            <form action="overview.php?time=period" method="POST">
+                <label>From</label>
+                <input type="date" name="fromDate" class="inputField" required><br>
 
-            <label>To</label>
-            <input type="date" name="toDate" id="toDate" class="inputField" required><br>
+                <label>To</label>
+                <input type="date" name="toDate" id="toDate" class="inputField" required><br>
 
-            <input type="submit" value="SHOW" class="search-button">
-        </form><br>
+                <input type="submit" value="SHOW" class="search-button">
+            </form>
+        </details><br>
 
-        <form action="overview.php?time=month" method="post" class="search-form">
-            <h3>Month & Year</h3>
-            <select class="monthSelector inputField" id="selectedMonth" name="selectedMonth" required></select><br>
-            <select class="yearSelector inputField" id="selectedYear" name="selectedYear" required></select><br>
-            <input type="submit" value="SHOW" class="search-button">
-        </form><br>
+        <details class="search-form">
+            <summary><h3>Month & Year</h3></summary>
+            <form action="overview.php?time=month" method="post">
+                <select class="monthSelector inputField" id="selectedMonth" name="selectedMonth" required></select><br>
+                <select class="yearSelector inputField" id="selectedYear" name="selectedYear" required></select><br>
+                <input type="submit" value="SHOW" class="search-button">
+            </form>
+        </details><br>
 
-        <form action="overview.php?time=year" method="post" class="search-form">
-            <h3>Year</h3>
-            <select class="yearSelector inputField" id="displayYear" name="displayYear" required></select><br>
-            <input type="submit" value="SHOW" class="search-button">
-        </form><br>
+        <details class="search-form">
+            <summary><h3>Year</h3></summary>
+            <form action="overview.php?time=year" method="post">            
+                <select class="yearSelector inputField" id="displayYear" name="displayYear" required></select><br>
+                <input type="submit" value="SHOW" class="search-button">
+            </form>
+        </details><br>
 
-        <form action="" method="post" id="categoryForm" class="search-form"> <!-- action controlled from JS -->
-            <h3>Category search</h3>
-            <label for="financeTypeSelector">Finance type</label>
-            <select name="financeType" id="financeTypeSelector" class="inputField" required>
-                <option selected disabled></option>
-                <option value="1">Expenses</option>
-                <option value="2">Investments</option>
-                <option value="3">Income</option>
-            </select><br>
-            <div id="selectCategoryDiv">
-                <label for="financeCategorySelector">Category</label>
-                <select name="selectedCategory" id="financeCategorySelector" class="inputField" required></select><br>
-            </div>
-            <input type="submit" value="SHOW" class="search-button">
-        </form>
+        <details class="search-form">
+            <summary><h3>Category search</h3></summary>
+            <form action="" method="post" id="categoryForm"> <!-- action controlled from JS -->            
+                <label for="financeTypeSelector">Finance type</label>
+                <select name="financeType" id="financeTypeSelector" class="inputField" required>
+                    <option selected disabled></option>
+                    <option value="1">Expenses</option>
+                    <option value="2">Investments</option>
+                    <option value="3">Income</option>
+                </select><br>
+                <div id="selectCategoryDiv">
+                    <label for="financeCategorySelector">Category</label>
+                    <select name="selectedCategory" id="financeCategorySelector" class="inputField" required></select><br>
+                </div>
+                <input type="submit" value="SHOW" class="search-button">
+            </form>
+        </details><br>
 
     </aside>
 

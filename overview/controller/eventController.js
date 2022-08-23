@@ -27,7 +27,23 @@ window.addEventListener("DOMContentLoaded", function(event){
             form.action = "overview.php?category=income";    
         }
     });
+
+    // Allow only one <details> to be oppened at the time
+    document.querySelectorAll('details').forEach((detail, index , allDetails)=>{
+        detail.ontoggle = () =>{ // ontoggle event: "execute a JavaScript when a <details> element is opened or closed"
+             if(detail.open) {
+                // Close all details tags that are different to the current selected
+                allDetails.forEach(detailElement =>{
+                    if(detailElement != detail) {
+                        detailElement.open=false 
+                    }
+                })
+             } 
+        }
+    });
+
 });
+
 
 // Function to fill <select> tag with a month list
 function monthElement(){
