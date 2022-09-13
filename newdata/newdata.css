@@ -20,7 +20,7 @@ main{
     flex-direction: column;
     text-align: left;
     margin: 0 auto;
-    width: auto;
+    width: 40%;
     padding: 2%;
     /*Style*/
     border: 3px solid black;
@@ -30,13 +30,19 @@ main{
 .dataForm form{
     margin: 0 auto;
 }
-
+.inputField{
+    width: 100% !important;
+}
 /*Buttons in forms*/
 form{
     padding-top: 1vh;    
     padding-bottom: 1vh;
 }
-
+.submit-button{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%) !important;
+}
 /*Title style*/
 .title{
     display: flex;
@@ -46,7 +52,14 @@ form{
     justify-content: center;
     margin-bottom: 2%;
 }
-.title h1{
+.title form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
+    justify-content: center;
+}
+.main-title{
     margin: 0;
     padding-left: 2%;
     padding-right: 2%;

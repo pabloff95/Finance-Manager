@@ -86,6 +86,19 @@ function getCategoryData($category, $table){
     return $result;
 }
 
+// Function to get all data of a table for a specific year
+function getYearlyData($table, $year){
+    // conect to DB
+    $db = connectDB();
+    // Query
+    $sql_select = "SELECT * FROM ". $table. " WHERE date BETWEEN '".$year."-01-01' AND '".$year."-12-31'";
+    $result = mysqli_query($db, $sql_select);
+    // Close connection
+    mysqli_close($db);  
+
+    return $result;
+}
+
 ?>
 
 

@@ -88,7 +88,7 @@ function createPieChart(subtitle, data, container){
 function detailDebt(totalIncome, totalInvestments, totalExpenses){
     // Create HTML elements
     var container = document.getElementById("chartTotalData");
-    container.innerHTML = "<h1>Total debt: " + (totalIncome-totalInvestments-totalExpenses) + "€</h1>";
+    container.innerHTML = "<h1>Total debt: " + (totalIncome-totalInvestments-totalExpenses).toFixed(2) + "€</h1>";
     var list = document.createElement("ul");
     // Gather data
     var concept = ["income", "investments", "expenses"];

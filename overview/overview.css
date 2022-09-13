@@ -1,3 +1,7 @@
+:root{
+    --font-size: calc(1rem + 0.75vh);
+}
+
 html, body{
     margin: 0;
     width: 100%;
@@ -8,7 +12,7 @@ html, body{
 body{
     display: grid;
     grid-template-rows: 10% auto;
-    grid-template-columns: 15% auto;
+    grid-template-columns: 30% auto;
 }
 header{
     background-color: brown;
@@ -25,11 +29,6 @@ aside{
     /*borders*/
     border-right: 3px black solid;
 }
-main{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-}
 /*---------- HEADER SECTION ----------*/
 header{
     background-color: black;
@@ -38,7 +37,7 @@ header{
 #header-container{
     width: 100%;
     display: grid;
-    grid-template-columns: 10% auto 10%;
+    grid-template-columns: auto auto auto;
 }
 .header-section{
     display: flex;
@@ -48,16 +47,27 @@ header{
     width: 100%;
     height: 100%;
 }
-.header-section form{
-    width: 90%;
-    height: 90%;
-    padding: 5%;
+.header-section h1{
+    margin: 0;
+    color: var(--main);
 }
-.header-button{
-    /*Dimensions*/
-    height: 90%;
+.header-section form{
+    display: flex;
+    align-items: center;
+    height: 100%;
     width: 100%;
-    font-size: 2rem;
+}
+#menuButton{
+    justify-content: flex-start;
+}
+#resetButton{
+    justify-content: flex-end;
+}
+
+.header-button{
+    height: 90%;
+    /*Dimensions*/
+    font-size: calc(2rem + 1vh);
     font-weight: bold;
     /*Colours*/
     background-color: var(--main);
@@ -82,6 +92,7 @@ header{
     color: black;
     background-color: white;
     padding: 2.5%;    
+    word-wrap: break-word;
 }
 details > summary { 
     /*Hidde arrow from summary list*/
@@ -89,31 +100,32 @@ details > summary {
 }
 summary{
     cursor: pointer;
+    font-size: var(--font-size);
 }
 summary h3{
     margin-top: 2%;
     margin-bottom: 2%;
 }
 aside form{
-    margin-top: 10%;
+    margin-top: 3.5%;
 }
 
 /*Inputs (class in generalStyle.css) */
 .inputField{
     width: 95% !important;
-    height: 3vh !important;
-    font-size: 1rem !important;
+    height: auto !important;
+    font-size: var(--font-size) !important;
 }
 aside form label{
-    font-size: 1rem;
+    font-size: var(--font-size);
 }
 
 /*Buttons*/
 .search-button{
     /*Dimensions*/
     width: 95%;
-    height: 3vh;
-    font-size: 1rem;
+    height: auto;
+    font-size: var(--font-size);
     font-weight: bold;
     /*Border*/
     border: 2px solid;
@@ -135,20 +147,30 @@ aside form label{
 /*Text with "display" information*/
 .displayed-information{
     margin-top: 50%;
-    font-size: 1.15rem;
+    font-size: var(--font-size);
 }
 
 /*------ CHARTS --------*/
-/*Grid layout*/
 main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     background-color: #d7dcf3;
 }
-.category{
-    grid-column: 1/ span 2;
-}
 .chart-container{
+    /*Dimensions*/
+    width: 100%;
+    height: auto;
+    min-width: 500px;
+    max-width: 625px;
+    min-height: 350px;
+    /*Internal dimensions*/
     display: grid;
     grid-template-rows: 10% 90%;
+}
+.category{
+    max-width: 100% !important;
 }
 /*Title*/
 .title-container{
@@ -161,7 +183,7 @@ main{
     background-color: black;
 }
 .chart-title{    
-    font-size: 1.5rem;
+    font-size: var(--font-size);
     font-weight: bold;
     color: var(--main);
     margin: 0;    
@@ -173,4 +195,65 @@ main{
 }
 .canvasjs-chart-canvas{
     border: 2px solid black;
+}
+canvas{
+    width: 100% !important;
+}
+
+/*----------- General overview data --------------*/
+#overview-container{
+    display: grid;
+    grid-template-rows: 10% 90%;
+    width: 100%;
+}
+
+/*Title*/
+.overview-title-container{
+    /*Position*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*Style*/
+    background-color: black;
+    font-size: var(--font-size);
+    font-weight: bold;
+    color: var(--main);
+    /*Limits*/
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;   
+
+}
+.title-element{
+    display: inline;
+    margin-left: 1.5%;  
+    margin-right: 1.5%;
+}
+.title-button{
+    height: 90%;
+    /*Dimensions*/
+    font-size: calc(1rem + 1vh);
+    font-weight: bold;
+    /*Colours*/
+    background-color: var(--main);
+    color: black;
+    /*Border*/
+    border: 3px solid black;
+    border-radius: 10px;
+    /*Other*/
+    cursor: pointer;
+}
+.title-button:hover{
+    background-color: var(--contrast);
+    transform: scale(1.1);
+}
+
+/*Chart*/
+#overview-chart-container{
+    width: 95.7%;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;   
+    height: 90%;
 }

@@ -4,13 +4,11 @@
     // ------------------- TO EXECUTE ON PAGE LOAD -----------------
     // Delete record if pressed on delete
     if (isset($_POST['deleteCategory'])){
-        deleteCategory($_POST['deleteId']);
-        deleteExpensesByCategory($_POST['categoryRecord']);
+        deleteExpensesByCategory($_POST['categoryRecord']); // Delete expense with given category from expenses table
     }
     // Edit record if pressed on change
     if (isset($_POST['changeCategory'])){
-        editCategory($_POST['inputId'],$_POST['inputCategory']);  // Change category data
-        editExpensesByCategory($_POST['oldCategory'], $_POST['inputCategory']); // Update new category value in existing records on expense table
+        editExpensesByCategory($_POST['oldCategory'], $_POST['newCategory']); // Update new category value in existing records on expense table
     }
 
 
@@ -23,7 +21,7 @@
         $x = 1; // iterator, value to display data between the limits
         $printed = 0; // Keep track of printed table rows
         // Get categories
-        $categories = getCategories();
+        $categories = getUniqueCategories("expenses");
         while ($row = mysqli_fetch_assoc($categories)){      
             if ($x > $lowLimit && $x <= $upLimit) {         
                 echo "<tr>";
@@ -46,15 +44,12 @@
 
     // Print table row changing <td> data for <input text> in case edit was pressed. Only applied to record selected
     function recordFormatCategory($row){
-        if (isset($_POST['edit']) && ($_POST['editId']) == $row['id']){
+        if (isset($_POST['edit']) && ($_POST['categoryReference']) == $row['category']){
             // Here the form includes all the data in the cells inside to be sent to the DB
             echo "
-                  <input type='hidden' value='".$row['id']."' name='inputId' form='changeCategoryForm' > 
-                  <input type='hidden' value='".$row['category']."' name='oldCategory' form='changeCategoryForm' > 
-
-                  <td><input type='text' value='".$row['category']."' name='inputCategory' form='changeCategoryForm' class = 'inputField' ></td>
-                  <td><input type='submit' value='Change' name='changeCategory' form='changeCategoryForm'  class='tableButton'></td>                       
-                  
+                    <input type='hidden' value='".$row['category']."' name='oldCategory' form='changeCategoryForm' > 
+                    <td><input type='text' value='".$row['category']."' name='newCategory' form='changeCategoryForm' class = 'inputField' ></td>
+                    <td><input type='submit' value='Change' name='changeCategory' form='changeCategoryForm'  class='tableButton'></td>                                         
                   <td>
                     <form action='management.php?data=categories_expenses&page=".$_GET['page']."' method='POST'>
                         <input type='submit' value='Cancel' name='cancel'  class='tableButton'>
@@ -66,17 +61,16 @@
                   <td>
                         <form action='management.php?data=categories_expenses&page=".$_GET['page']."' method='POST'>
                             <input type='submit' value='Edit' name='edit' class='tableButton'>
-                            <input type='hidden' value='".$row['id']."' name='editId'>
+                            <input type='hidden' value='".$row['category']."' name='categoryReference'>
                         </form>
                   </td>
                   <td>
                     <form action='management.php?data=categories_expenses&page=".$_GET['page']."' method='POST'>
                         <input type='submit' value='Delete' name='deleteCategory' class='tableButton'>
-                        <input type='hidden' value='".$row['id']."' name='deleteId'>
                         <input type='hidden' value='".$row['category']."' name='categoryRecord'> 
                     </form>
                 </td>";
         }
     }
-
+    
 ?>

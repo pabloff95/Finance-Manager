@@ -62,7 +62,7 @@ function recordFormatInvestment($row){
               <td><input type='text' value='".$row['concept']."' name='inputConcept' form='changeInvestmentForm' class = 'inputField' ></td>
               <td><input type='text' value='".$row['share']."' name='inputShare' id='shareField' form='changeInvestmentForm' class = 'inputField' ></td>
               <td><input type='date' value='".$row['date']."' name='inputDate' form='changeInvestmentForm' class = 'inputField' ></td>
-              <td><input type='text' value='".$row['amount']."' name='inputAmount' form='changeInvestmentForm' class = 'inputField' ></td>
+              <td><input type='text' value='".moneyFormat($row['amount'])."' name='inputAmount' form='changeInvestmentForm' class = 'inputField' ></td>
               <td><input type='submit' value='Change' name='changeInvestment' form='changeInvestmentForm' class='tableButton'></td>                       
               
               <td>
@@ -75,8 +75,8 @@ function recordFormatInvestment($row){
         echo "<td>".$row['category']."</td>                    
               <td>".$row['concept']."</td>
               <td>".$row['share']."</td>
-              <td>".$row['date']."</td>
-              <td>".$row['amount']."</td>        
+              <td>".dateFormat($row['date'])."</td>
+              <td>".moneyFormat($row['amount'])."</td>        
               <td>
                     <form action='management.php?data=investment&page=".$_GET['page']."' method='POST'>
                         <input type='submit' value='Edit' name='edit' class='tableButton'>

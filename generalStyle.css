@@ -26,7 +26,7 @@ body, html{
     /*Dimensions*/
     width: 50vw;
     height: 10vh;
-    font-size: 3rem;
+    font-size: calc(2.5rem + 1vh);
     /*Border*/
     border: 3px solid;
     border-radius: 15px;
@@ -52,7 +52,7 @@ body, html{
     /*Dimensions*/
     width: 30vw;
     height: 5vh;
-    font-size: 1.25rem;
+    font-size: calc(1rem + 1vh);
     /*Border*/
     border: 2px solid;
     border-radius: 15px;
@@ -78,7 +78,7 @@ body, html{
     height: 5vh;
     background-color: var(--inputBG);
     margin-bottom: 2vh;
-    font-size: 1.25rem;
+    font-size: calc(1rem + 1vh);
     /*Border style*/
     border-style: hidden;
     border-bottom: 2px solid var(--main-dark);
@@ -92,14 +92,14 @@ body, html{
 }
 /*Label font*/
 label{
-    font-size: 1.25rem;
+    font-size: calc(1rem + 1vh);
 }
 
 
 /*Change record (GET in URL) button "<" / ">"*/
 .change-record{
     /*General*/
-    font-size: 1.25rem;
+    font-size: calc(1rem + 1vh);
     cursor: pointer;
     /*Border style*/
     border: 3px solid;
@@ -111,4 +111,13 @@ label{
 }
 .change-record:hover{
     background-color: var(--contrast);
+}
+
+/*Title <h1>*/
+.main-title{
+    font-size: calc(2.5rem + 1vh);
+}
+/*Secondary Title <h2>*/
+.secondary-title{
+    font-size: calc(1rem + 1vh);
 }

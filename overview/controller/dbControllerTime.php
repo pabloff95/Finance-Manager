@@ -120,19 +120,19 @@
         // Create arrays to send to JS: label with concept, y with % value, money with total amount, legenText with the text to be displayed in the legend
         $totalData = array(
             array("label" => "Expenses", 
-                    "y" => $expensesPercentage,
-                    "money" => $totalExpenses . "€",
-                    "legendText" => "Expended " . $totalExpenses . "€"
+                    "y" => round($expensesPercentage,2),
+                    "money" => moneyFormat($totalExpenses) . "€",
+                    "legendText" => "Expended " . moneyFormat($totalExpenses) . "€"
             ),
             array("label" => "Savings", 
-                    "y" => $savedPercentage,
-                    "money" => $totalSaved . "€",
-                    "legendText" => "Saved " . $totalSaved . "€"
+                    "y" => round($savedPercentage,2),
+                    "money" => moneyFormat($totalSaved) . "€",
+                    "legendText" => "Saved " . moneyFormat($totalSaved) . "€"
             ),
             array("label" => "Investments", 
-                    "y" => $investmentPercentage,
-                    "money" => $totalInvestment . "€",
-                    "legendText" => "Invested " . $totalInvestment . "€"
+                    "y" => round($investmentPercentage,2),
+                    "money" => moneyFormat($totalInvestment) . "€",
+                    "legendText" => "Invested " . moneyFormat($totalInvestment) . "€"
             )
         );
         return $totalData;
@@ -159,9 +159,9 @@
             $percentageExpensesCategory = ($amountCategory / $totalExpenses) * 100; // percentage of this amount compared to all the expenses
             // Set array to be send as JSON object for canvas.js graph
             $categoryArray = array("label" => $category, 
-                            "y" => $percentageExpensesCategory,
-                            "money" => $amountCategory . "€",
-                            "legendText" => $category. " " . $amountCategory . "€");
+                            "y" => round($percentageExpensesCategory,2),
+                            "money" => moneyFormat($amountCategory) . "€",
+                            "legendText" => $category. " " . moneyFormat($amountCategory) . "€");
             array_push($categoryExpensesData, $categoryArray);
         }
         return $categoryExpensesData;
@@ -171,7 +171,7 @@
     function arrayIncome(){
         // Define variables
         $categories = getCategories("income"); // distinct categories
-        $totalExpenses = getTotalAmount("income"); // total amount of expenses
+        $totalExpenses = getTotalAmount("income"); // total amount of income
         $categoryExpensesData = array(); // array to store all the required data
         // loop through every distinct category and then gather the total amount of each of them
         while ($row = mysqli_fetch_assoc($categories)){
@@ -188,9 +188,9 @@
             $percentageExpensesCategory = ($amountCategory / $totalExpenses) * 100; // percentage of this amount compared to all the expenses
             // Set array to be send as JSON object for canvas.js graph
             $categoryArray = array("label" => $category, 
-                            "y" => $percentageExpensesCategory,
-                            "money" => $amountCategory . "€",
-                            "legendText" => $category. " " . $amountCategory . "€");
+                            "y" => round($percentageExpensesCategory,2),
+                            "money" => moneyFormat($amountCategory) . "€",
+                            "legendText" => $category. " " . moneyFormat($amountCategory) . "€");
             array_push($categoryExpensesData, $categoryArray);
         }
         return $categoryExpensesData;
@@ -216,9 +216,9 @@
             $percentageInvestmentCategory = ($amountCategory / $totalExpenses) * 100; // percentage of this amount compared to all the expenses
             // Set array to be send as JSON object for canvas.js graph
             $categoryArray = array("label" => $category, 
-                            "y" => $percentageInvestmentCategory,
-                            "money" => $amountCategory . "€",
-                            "legendText" => $category. " " . $amountCategory . "€");
+                            "y" => round($percentageInvestmentCategory,2),
+                            "money" => moneyFormat($amountCategory) . "€",
+                            "legendText" => $category. " " . moneyFormat($amountCategory) . "€");
             array_push($categoryInvestmentData, $categoryArray);
         }
         return $categoryInvestmentData;

@@ -5,7 +5,11 @@
     function getInvestments($order){
         $db = connectDB();
         // Query
-        $sql_select = "SELECT * FROM investment ORDER BY ".$order;
+        if ($order == "date") {
+            $sql_select = "SELECT * FROM investment ORDER BY ". $order . " DESC";
+        } else {
+            $sql_select = "SELECT * FROM investment ORDER BY ". $order;
+        }
         $result = mysqli_query($db, $sql_select);
         // Close
         mysqli_close($db);
@@ -29,9 +33,13 @@
     // Edit record in investment table
     function editInvestment($category, $concept, $date, $amount, $share, $id){
         $db = connectDB();
+        // Same format (upper - lower case) for all categories
+        $category = ucfirst(strtolower($category));
+        // Same format for all shares
+        $share = strtoupper($share);
         // Query
         $sql_edit = $db->prepare("UPDATE investment SET category = ?, concept = ?, date = ?, amount = ?, share = ? WHERE id = ?");
-        $sql_edit->bind_param("sssisi", $category, $concept, $date, $amount, $share, $id);
+        $sql_edit->bind_param("sssdsi", $category, $concept, $date, $amount, $share, $id);
         $sql_edit->execute();
         // Close connecitons
         $sql_edit->close();

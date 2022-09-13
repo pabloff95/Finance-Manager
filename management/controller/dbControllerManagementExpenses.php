@@ -47,8 +47,8 @@
             // Here the form includes all the data in the cells inside to be sent to the DB
             echo "
                     <input type='hidden' value='".$row['id']."' name='inputId' form='changeExpenseForm'>
-
-                    <td><input type='text' value='".$row['amount']."' name='inputAmount' form='changeExpenseForm' class = 'inputField' ></td>
+                                      
+                    <td><input type='text' value='". moneyFormat($row['amount'])  ."' name='inputAmount' form='changeExpenseForm' class = 'inputField' ></td>
                     <td><input type='text' value='".$row['concept']."' name='inputConcept' form='changeExpenseForm' class = 'inputField' ></td>
                     <td>
                         <select name='inputCategory' form='changeExpenseForm' class = 'inputField' >";
@@ -65,10 +65,10 @@
                   </td>";
         } else {
             // Here it is not necessary that the form contains all the data as it will not be changed in the DB
-            echo "<td>".$row['amount']."</td>
+            echo "<td>".moneyFormat($row['amount'])."</td>
                   <td>".$row['concept']."</td>
                   <td>".$row['category']."</td>
-                  <td>".$row['date']."</td>
+                  <td>".dateFormat($row['date'])."</td>
                   <td><form action='management.php?data=expenses&page=".$_GET['page']."' method='POST'>
                         <input type='submit' value='Edit' name='edit' class='tableButton'>
                         <input type='hidden' value='".$row['id']."' name='editId'>
@@ -85,7 +85,7 @@
 
     // Function to show possible categories when editing expenses records
     function printEditCategories($value){
-        $categories = getCategories();
+        $categories = getUniqueCategories("expenses");
         while ($row = mysqli_fetch_assoc($categories)){
             if ($value == $row['category'] ){
                 echo "<option selected>".$row['category']."</option>";
@@ -94,6 +94,5 @@
             }            
         }
     }
-
 
 ?>

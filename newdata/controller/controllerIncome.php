@@ -13,7 +13,6 @@
         // When using a new category (add it to the DB)
         } else if (isset($_POST['newIncomeDBCategory'])) {
             insertIncome($_POST['concept'], $_POST['date'], $_POST['amount'], $_POST['newIncomeDBCategory']);        
-            insertNewIncomeCategory($_POST['newIncomeDBCategory']);
         }               
     }
 
@@ -23,13 +22,13 @@
     // Print confirmation message when data is inserted into DB (used by expenses and investment too)
     function printConfirmationMessage(){
         if (isset($_POST['concept'])) {
-            echo "<h2>'".$_POST['concept']."' inserted into the database!</h2>";
+            echo "<h2 class='secondary-title'>'".$_POST['concept']."' inserted into the database!</h2>";
         }
     }
 
     // Print <option> with income categories
     function printIncomeCategories(){
-        $queryResult = getCategoriesIncome();
+        $queryResult = getUniqueCategories("income");
         while ($row = mysqli_fetch_assoc($queryResult)){
             echo "<option>".$row['category']."</option>";
         }
