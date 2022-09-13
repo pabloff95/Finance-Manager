@@ -30,7 +30,10 @@ function categoryPlot(dataCategories, category, period, id, type){
         data: [{
             type: type,
             dataPoints: dataCategories
-        }]
+        }],
+        toolTip:{                                
+            content: "{money}"
+        }   
     });
     chart.render();
 }

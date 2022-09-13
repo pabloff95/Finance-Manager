@@ -11,6 +11,12 @@
     require $_SERVER['DOCUMENT_ROOT'] . "/finances/newdata/controller/controllerIncome.php"; // Income controller
     require $_SERVER['DOCUMENT_ROOT'] . "/finances/newdata/controller/controllerInvestment.php"; // Investment controller
 
+    // Check if user is logged (cookies exist) and check correct user (check hash cookie)
+    if (md5($_COOKIE['user'] . getSalt($_COOKIE['user'])) != $_COOKIE['hash']) {
+        header("Location:/finances/index.php");
+        exit();
+    }
+    
     // Load JS files according to form displayed (by $_GET['record'], read bellow)
     if (isset($_GET['record']) && $_GET['record'] == "expenses") {
     ?>
@@ -52,7 +58,7 @@
             <form action="newdata.php?record=invest" method="POST">
                 <input type="submit" value="INVESTMENT" class="menuButton">
             </form>
-            <form action="/finances/index.php" method="POST">
+            <form action="/finances/menu/menu.php" method="POST">
                 <input type="submit" value="MENU" class="menuButton">
             </form>
             <!-- ADD NEW RECORD FOR EXPENSES -->
@@ -61,7 +67,7 @@
                 <form action="newdata.php?record=invest" method="POST">
                     <input type="submit" value="<" class="change-record">
                 </form>
-                <h1>New expense</h1>
+                <h1 class="main-title">New expense</h1>
                 <form action="newdata.php?record=income" method="POST">
                     <input type="submit" value=">" class="change-record">
                 </form>
@@ -85,13 +91,13 @@
                     <input type="date" name="date" id="date" class="inputField" required ></br>
 
                     <label>Amount</label><br>
-                    <input type="number" name="amount" class="inputField" required ></br>
+                    <input type="number" name="amount" class="inputField" step=".01" required ></br>
 
                     <?php printConfirmationMessage(); ?>
 
-                    <input type="submit" value="ADD" name="expensesForm" class="formButton">
+                    <input type="submit" value="ADD" name="expensesForm" class="formButton submit-button">
                 </form>
-                <form action="/finances/index.php" method="POST">
+                <form action="/finances/menu/menu.php" method="POST">
                     <input type="submit" value="MENU" class="formButton">
                 </form>
             </div>
@@ -102,7 +108,7 @@
                 <form action="newdata.php?record=expenses" method="POST">
                     <input type="submit" value="<" class="change-record">
                 </form>
-                <h1>New income</h1>
+                <h1 class="main-title">New income</h1>
                 <form action="newdata.php?record=invest" method="POST">
                     <input type="submit" value=">" class="change-record">
                 </form>
@@ -126,13 +132,13 @@
                     <input type="date" name="date" id="date" class="inputField" required ></br>
 
                     <label>Amount</label><br>
-                    <input type="number" name="amount" class="inputField" required ></br>
+                    <input type="number" name="amount" class="inputField" step=".01" required ></br>
 
                     <?php printConfirmationMessage(); ?>
 
-                    <input type="submit" value="ADD" name="incomeForm" class="formButton">
+                    <input type="submit" value="ADD" name="incomeForm" class="formButton submit-button">
                 </form>
-                <form action="/finances/index.php" method="POST">
+                <form action="/finances/menu/menu.php" method="POST">
                     <input type="submit" value="MENU" class="formButton">
                 </form>
             </div>
@@ -142,7 +148,7 @@
                 <form action="newdata.php?record=income" method="POST">
                     <input type="submit" value="<" class="change-record">
                 </form>
-                <h1>New investment</h1>
+                <h1 class="main-title">New investment</h1>
                 <form action="newdata.php?record=expenses" method="POST">
                     <input type="submit" value=">" class="change-record">
                 </form>
@@ -165,13 +171,13 @@
                     <input type="date" id="date" name="dateInvestment" class="inputField" required ></br>
 
                     <label>Amount</label><br>
-                    <input type="number" name="amountInvestment" class="inputField" required ></br>
+                    <input type="number" name="amountInvestment" class="inputField" step=".01" required ></br>
 
                     <?php printConfirmationMessage(); ?>
 
-                    <input type="submit" value="ADD" name="investmentForm" class="formButton">
+                    <input type="submit" value="ADD" name="investmentForm" class="formButton submit-button">
                 </form>
-                <form action="/finances/index.php" method="POST">
+                <form action="/finances/menu/menu.php" method="POST">
                     <input type="submit" value="MENU" class="formButton">
                 </form>
             </div>

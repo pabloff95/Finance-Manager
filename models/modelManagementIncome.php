@@ -5,7 +5,11 @@
     function getIncome($order){
         $db = connectDB();
         // Query
-        $sql_select = "SELECT * FROM income ORDER BY ".$order;
+        if ($order == "date") {
+            $sql_select = "SELECT * FROM income ORDER BY ". $order . " DESC";
+        } else {
+            $sql_select = "SELECT * FROM income ORDER BY ". $order;
+        }
         $result = mysqli_query($db, $sql_select);
         // Close
         mysqli_close($db);
@@ -28,9 +32,11 @@
     // Edit record in income table
     function editIncome($id, $income, $date, $amount, $category){
         $db = connectDB();
+        // Same format (upper - lower case) for all categories
+        $category = ucfirst(strtolower($category));
         // Query
         $sql_edit = $db->prepare("UPDATE income SET concept = ?, date = ?, amount = ?, category = ? WHERE id = ?");
-        $sql_edit->bind_param("ssisi", $income, $date, $amount, $category, $id);
+        $sql_edit->bind_param("ssdsi", $income, $date, $amount, $category, $id);
         $sql_edit->execute();
         // Close connecitons
         $sql_edit->close();

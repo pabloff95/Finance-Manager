@@ -1,39 +1,39 @@
-body, html{
+html, body{
     height: 100%;
-    overflow-y: hidden;
+    width: 100%;
+    overflow: hidden;
 }
-
-
 
 main{
-    width: 100%;
     height: 100%;
-    /*Center flexbox*/
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    width: 100%;
+    display: flex;    
     justify-content: center;
-}
-/*Buttons*/
-form{
-    padding-top: 1vh;    
-    padding-bottom: 1vh;
+    align-items: center;
 }
 
-/*Information of current month*/
-aside{
-    padding: 1%;
-    background-color: lightgray;
-    /*Positon*/
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-right: 2.5%;
+/*Form*/
+main form{
     /*Border*/
     border: 3px solid black;
     border-radius: 10px;
+    /*General style*/
+    color: black;
+    background-color: white;
+    padding: 2.5%;   
 }
-aside h1{
+main h1{
     text-align: center;
+}
+main label{
+    font-size: calc(1rem + 1vh);
+}
+.menuButton{
+    width: 30vw !important;
+    height: 8vh !important;
+    font-size: calc(2rem + 1vh) !important;
+}
+.error{
+    font-size: 1.25rem;
+    color: red;    
 }

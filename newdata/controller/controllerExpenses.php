@@ -11,7 +11,6 @@
         // When using a new category (add it to the DB)
         } else if (isset($_POST['newDBCategory'])) {
             insertExpenses($_POST['concept'], $_POST['newDBCategory'], $_POST['date'], $_POST['amount']);        
-            insertNewCategory($_POST['newDBCategory']);
         }               
     }
 
@@ -19,7 +18,7 @@
 
     // Function to print the categories stored in the DB
     function printExpensesCategories(){
-        $categories = getCategories();
+        $categories = getUniqueCategories("expenses");
         while ($row = mysqli_fetch_assoc($categories)){
             echo "<option>".$row['category']."</option>";
         }

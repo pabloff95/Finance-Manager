@@ -44,7 +44,10 @@
         // Prepare array with data
         $jsCanvasData = array();
         foreach ($values as $date => $amount){
-            $record = array("y" => $amount, "label" => $date);
+            $record = array(
+                "y" => round($amount,2),
+                "label" => $date, 
+                "money" => moneyFormat($amount) . "€");
             array_push($jsCanvasData, $record);
         }
         return $jsCanvasData;

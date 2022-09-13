@@ -5,7 +5,11 @@
     function getExpenses($order){
         $db = connectDB();
         // Query
-        $sql_select = "SELECT * FROM expenses ORDER BY ". $order;
+        if ($order == "date") {
+            $sql_select = "SELECT * FROM expenses ORDER BY ". $order . " DESC";
+        } else {
+            $sql_select = "SELECT * FROM expenses ORDER BY ". $order;
+        }        
         $result = mysqli_query($db, $sql_select);
         // Close
         mysqli_close($db);
@@ -28,9 +32,11 @@
     // Edit record in expenses table
     function editExpense($id, $amount,$concept, $category, $date){
         $db = connectDB();
+        // Same format (upper - lower case) for all categories
+        $category = ucfirst(strtolower($category));
         // Query
         $sql_edit = $db->prepare("UPDATE expenses SET concept = ?, category = ?, date = ?, amount = ? WHERE id = ?");
-        $sql_edit->bind_param("sssii", $concept, $category, $date, $amount, $id);
+        $sql_edit->bind_param("sssdi", $concept, $category, $date, $amount, $id);
         $sql_edit->execute();
         // Close connecitons
         $sql_edit->close();
